@@ -1,0 +1,26 @@
+[versions]
+
+# Minecraft
+paper = "1.19.3-R0.1-SNAPSHOT"
+
+# Kyori
+kyori = "4.12.0"
+
+# Misc
+yaml = "1.8.3"
+
+[libraries]
+
+# Minecraft
+papermc = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+
+# Misc
+gson = { module = "com.google.code.gson:gson", version = "2.10.1" }
+yaml = { module = "me.carleslc.Simple-YAML:Simple-Yaml", version = "1.8.3" }
+
+mojang = { module = "com.mojang:authlib", version = "3.16.29" }
+
+kyori = { module = "net.kyori:adventure-api", version.ref = "kyori" }
+kyori-mm = { module = "net.kyori:adventure-text-minimessage", version.ref = "kyori" }
+
+jetbrains = { module = "org.jetbrains:annotations", version = "23.0.0" }

@@ -1,0 +1,11 @@
+.gradle
+buildSrc/.gradle
+
+.idea
+
+api/build
+buildSrc/build
+
+modules/paper-test/build
+
+platforms/minecraft/paper/build
