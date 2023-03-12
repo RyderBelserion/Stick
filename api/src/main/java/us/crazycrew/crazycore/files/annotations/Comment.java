@@ -14,6 +14,11 @@ public @interface Comment {
      */
     String value();
 
+    /**
+     * If it should be Side Type or Block Comment.
+     *
+     * @return true or false
+     */
     boolean blockType();
 
 }
