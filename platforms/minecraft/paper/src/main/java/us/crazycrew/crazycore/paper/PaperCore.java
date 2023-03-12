@@ -4,7 +4,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import us.crazycrew.crazycore.CrazyCore;
 import us.crazycrew.crazycore.files.FileHandler;
-import us.crazycrew.crazycore.paper.files.PaperFileManager;
 import us.crazycrew.crazycore.paper.player.PaperPlayerListener;
 import us.crazycrew.crazycore.paper.player.PaperPlayerRegistry;
 import us.crazycrew.crazycore.player.CrazyPlayerRegistry;
@@ -23,7 +22,7 @@ public class PaperCore implements CrazyCore {
     private String projectPrefix;
 
     private final FileHandler fileHandler;
-    private final PaperFileManager paperFileManager;
+    //private final PaperFileManager paperFileManager;
 
     private PaperConsole paperConsole;
     private PaperPlayerRegistry paperPlayerRegistry;
@@ -54,7 +53,7 @@ public class PaperCore implements CrazyCore {
 
         this.fileHandler = new FileHandler();
 
-        this.paperFileManager = new PaperFileManager();
+        //this.paperFileManager = new PaperFileManager();
     }
 
     /**
@@ -113,9 +112,9 @@ public class PaperCore implements CrazyCore {
     /**
      * @return the file manager instance for paper
      */
-    public PaperFileManager getPaperFileManager() {
-        return this.paperFileManager;
-    }
+    //public PaperFileManager getPaperFileManager() {
+        //return this.paperFileManager;
+    //}
 
     /**
      * Sets the paper console variable.

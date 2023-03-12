@@ -12,7 +12,7 @@ dependencies {
     api(libs.gson)
 
     // Yaml.
-    api(libs.yaml)
+    //api(libs.yaml)
 
     // Kyori.
     compileOnly(libs.kyori)
