@@ -25,7 +25,7 @@ public class CrazyExample extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        ExampleConfig.reload(this.paperCore.getPaperFileManager());
+
     }
 
     @Override

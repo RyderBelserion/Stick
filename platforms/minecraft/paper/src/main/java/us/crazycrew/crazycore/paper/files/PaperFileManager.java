@@ -1,17 +1,8 @@
 package us.crazycrew.crazycore.paper.files;
 
-import us.crazycrew.crazycore.CrazyLogger;
-import us.crazycrew.crazycore.files.FileExtension;
-import us.crazycrew.crazycore.files.FileManager;
-import us.crazycrew.crazycore.files.types.JsonManager;
-import us.crazycrew.crazycore.files.types.YamlManager;
-import us.crazycrew.crazycore.utils.FileUtils;
-import java.io.File;
-import java.nio.file.Path;
-
-/**
+/*
  * Description: A paper version of the file manager.
- */
+
 public final class PaperFileManager extends FileManager {
 
     private JsonManager jsonExtension;
@@ -19,14 +10,14 @@ public final class PaperFileManager extends FileManager {
 
     /**
      * Constructor.
-     */
+
     public PaperFileManager() {}
 
     /**
      * Adds a file to the server.
-     * <p>
+     *
      * @param fileExtension the {@link FileExtension} to be added
-     */
+
     @Override
     public void addFile(FileExtension fileExtension) {
         switch (fileExtension.getFileType()) {
@@ -46,9 +37,9 @@ public final class PaperFileManager extends FileManager {
 
     /**
      * Saves a file to the server.
-     * <p>
+     *
      * @param fileExtension the {@link FileExtension} to be saved
-     */
+
     @Override
     public void saveFile(FileExtension fileExtension) {
         switch (fileExtension.getFileType()) {
@@ -70,7 +61,7 @@ public final class PaperFileManager extends FileManager {
      * Removes a file from the server.
      *
      * @param fileExtension the {@link FileExtension} to remove from the server
-     */
+
     @Override
     public void removeFile(FileExtension fileExtension) {
         File newFile = new File(fileExtension.getFilePath() + "/" + fileExtension.getFileName());
@@ -88,7 +79,7 @@ public final class PaperFileManager extends FileManager {
      *
      * @param value the folder name
      * @param directory the output directory
-     */
+
     public void extract(String value, Path directory) {
         File newDirectory = new File(directory + value);
 
@@ -97,3 +88,4 @@ public final class PaperFileManager extends FileManager {
         FileUtils.extract(value, directory, false);
     }
 }
+     */
