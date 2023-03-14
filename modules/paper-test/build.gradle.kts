@@ -2,6 +2,8 @@ plugins {
     id("crazycore.paper-plugin")
 
     id("com.github.johnrengelman.shadow") version "8.1.0"
+
+    id("xyz.jpenilla.run-paper") version "2.0.1"
 }
 
 dependencies {
@@ -18,6 +20,10 @@ val name = "CrazyExample"
 tasks {
     shadowJar {
         archiveFileName.set("${name}+$version.jar")
+    }
+
+    runServer {
+        minecraftVersion("1.19.4")
     }
 
     processResources {
