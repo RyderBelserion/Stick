@@ -18,15 +18,14 @@ import java.nio.file.Path;
  */
 public class PaperCore implements CrazyCore {
 
+    private final PaperFileManager paperFileManager;
+    private final FileHandler fileHandler;
     private final String projectName;
     private final Path projectPath;
-    private String projectPrefix;
 
-    private final FileHandler fileHandler;
-    private final PaperFileManager paperFileManager;
-
-    private PaperConsole paperConsole;
     private PaperPlayerRegistry paperPlayerRegistry;
+    private PaperConsole paperConsole;
+    private String projectPrefix;
 
     /**
      * A constructor to pass into JavaPlugin
