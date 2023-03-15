@@ -1,26 +1,32 @@
 package us.crazycrew.example.commands;
 
-import org.bukkit.Color;
+import com.destroystokyo.paper.ParticleBuilder;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.Particle;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import us.crazycrew.crazycore.paper.particles.ParticleBuilder;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import us.crazycrew.crazycore.paper.particles.CustomParticle;
+import us.crazycrew.example.CrazyExample;
 
-public class TestCommand implements CommandExecutor {
+public class TestCommand implements Listener {
 
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        ParticleBuilder particleBuilder = new ParticleBuilder();
+    @EventHandler
+    public void onPlayerChat(AsyncChatEvent event) {
+        Player player = event.getPlayer();
 
-        Player player = (Player) sender;
+        CustomParticle customParticle = new CustomParticle();
 
-        Particle particle = particleBuilder.color(Color.fromRGB(333)).build();
+        ParticleBuilder particleBuilder = customParticle.init(Particle.WATER_BUBBLE).build();
 
-        player.spawnParticle(particle, player.getLocation(), 1);
+        CrazyExample.getPlugin().getServer().getScheduler().runTaskTimerAsynchronously(CrazyExample.getPlugin(), () -> {
+            particleBuilder.location(player.getLocation());
+            particleBuilder.count(24);
+            particleBuilder.source(player);
 
-        return false;
+            particleBuilder.offset(3, 1, 3);
+
+            particleBuilder.spawn();
+        }, 5, 20);
     }
 }

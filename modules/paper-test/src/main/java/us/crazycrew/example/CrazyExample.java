@@ -4,6 +4,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import us.crazycrew.crazycore.CrazyLogger;
 import us.crazycrew.crazycore.paper.PaperCore;
+import us.crazycrew.example.commands.TestCommand;
+
 import java.util.logging.Logger;
 
 public class CrazyExample extends JavaPlugin {
@@ -25,7 +27,7 @@ public class CrazyExample extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
+        getServer().getPluginManager().registerEvents(new TestCommand(), this);
     }
 
     @Override

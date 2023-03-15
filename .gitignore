@@ -7,5 +7,11 @@ api/build
 buildSrc/build
 
 modules/paper-test/build
+modules/paper-test/run/
+!modules/paper-test/run/eula.txt
+!modules/paper-test/run/bukkit.yml
+!modules/paper-test/run/spigot.yml
+!modules/paper-test/run/server.properties
+!modules/paper-test/run/config
 
 platforms/minecraft/paper/build
