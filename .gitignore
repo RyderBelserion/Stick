@@ -8,6 +8,7 @@ buildSrc/build
 
 modules/paper-test/build
 modules/paper-test/run/
+modules/paper-test/.gradle
 !modules/paper-test/run/eula.txt
 !modules/paper-test/run/bukkit.yml
 !modules/paper-test/run/spigot.yml

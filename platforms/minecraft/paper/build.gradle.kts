@@ -2,8 +2,6 @@
 
 plugins {
     id("crazycore.paper-plugin")
-
-    id("com.github.johnrengelman.shadow") version "8.1.0"
 }
 
 dependencies {
@@ -16,12 +14,18 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveBaseName.set("${rootProject.name.lowercase()}+${projectDir.name}+${rootProject.version}.jar")
+        archiveBaseName.set("${rootProject.name.lowercase()}+Paper+${rootProject.version}.jar")
     }
 
     javadoc {
         title = "CrazyCore Paper - ${rootProject.version}"
         description = "The paper extension of CrazyCore"
+
+        options.encoding = Charsets.UTF_8.name()
+    }
+
+    processResources {
+        filteringCharset = Charsets.UTF_8.name()
     }
 }
 

@@ -1,8 +1,6 @@
 plugins {
     id("crazycore.paper-plugin")
 
-    id("com.github.johnrengelman.shadow") version "8.1.0"
-
     id("xyz.jpenilla.run-paper") version "2.0.1"
 }
 

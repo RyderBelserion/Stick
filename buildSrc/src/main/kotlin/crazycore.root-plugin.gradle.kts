@@ -1,6 +1,8 @@
 plugins {
     `java-library`
     `maven-publish`
+
+    id("com.github.johnrengelman.shadow")
 }
 
 repositories {
@@ -15,6 +17,8 @@ java {
 
 tasks {
     compileJava {
+        options.encoding = Charsets.UTF_8.name()
+
         options.release.set(17)
     }
 }

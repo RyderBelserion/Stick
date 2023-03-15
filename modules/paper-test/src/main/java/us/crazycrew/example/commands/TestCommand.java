@@ -17,16 +17,19 @@ public class TestCommand implements Listener {
 
         CustomParticle customParticle = new CustomParticle();
 
-        ParticleBuilder particleBuilder = customParticle.init(Particle.WATER_BUBBLE).build();
+        ParticleBuilder particleBuilder = customParticle.init(Particle.FLAME, player.getLocation()).build();
 
         CrazyExample.getPlugin().getServer().getScheduler().runTaskTimerAsynchronously(CrazyExample.getPlugin(), () -> {
             particleBuilder.location(player.getLocation());
-            particleBuilder.count(24);
+            particleBuilder.count(64);
             particleBuilder.source(player);
+            particleBuilder.extra(0.1);
 
             particleBuilder.offset(3, 1, 3);
 
             particleBuilder.spawn();
+
+            particleBuilder.particle(Particle.CLOUD);
         }, 5, 20);
     }
 }
