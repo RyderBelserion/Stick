@@ -3,6 +3,8 @@ plugins {
     `maven-publish`
 
     id("com.github.johnrengelman.shadow")
+
+    kotlin("plugin.serialization")
     kotlin("jvm")
 }
 

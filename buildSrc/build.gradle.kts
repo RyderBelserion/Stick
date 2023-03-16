@@ -8,6 +8,8 @@ repositories {
 
 dependencies {
     implementation(libs.kotlin)
+    implementation(libs.kotlin.serialization)
+
     implementation(libs.shadow)
     implementation(libs.paperweight)
 }

@@ -10,6 +10,7 @@ kyori = "4.13.0"
 yaml = "1.8.3"
 
 ktor = "2.2.4"
+kotlin = "1.8.20-RC"
 
 [libraries]
 
@@ -27,9 +28,11 @@ kyori-mm = { module = "net.kyori:adventure-text-minimessage", version.ref = "kyo
 ktor-core = { module = "io.ktor:ktor-client-core-jvm", version.ref = "ktor" }
 ktor-cio = { module = "io.ktor:ktor-client-cio-jvm", version.ref = "ktor" }
 ktor-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-gson = { module = "io.ktor:ktor-serialization-gson", version.ref = "ktor" }
+ktor-gson = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version = "1.8.20-RC" }
+kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin"}
+
 shadow = { module = "com.github.johnrengelman:shadow", version = "8.1.0" }
 
 # Misc

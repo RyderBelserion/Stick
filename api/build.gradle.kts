@@ -12,6 +12,12 @@ dependencies {
     // Yaml.
     api(libs.yaml)
 
+    // Kotlin.
+    api(libs.ktor.core)
+    api(libs.ktor.cio)
+    api(libs.ktor.content)
+    api(libs.ktor.gson)
+
     // Kyori.
     compileOnly(libs.kyori)
     compileOnly(libs.kyori.mm)
