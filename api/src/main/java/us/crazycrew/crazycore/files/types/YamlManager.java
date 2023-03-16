@@ -1,13 +1,25 @@
 package us.crazycrew.crazycore.files.types;
 
+import org.simpleyaml.configuration.comments.CommentType;
+import org.simpleyaml.configuration.file.YamlFile;
+import org.simpleyaml.configuration.implementation.api.QuoteStyle;
+import us.crazycrew.crazycore.files.FileExtension;
+import us.crazycrew.crazycore.files.annotations.Comment;
+import us.crazycrew.crazycore.files.annotations.Header;
+import us.crazycrew.crazycore.files.annotations.Path;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
+
 /*
  * Description: Creates .yml files on its own thread.
-
+ */
 public class YamlManager {
 
     /**
      * The file configuration.
-
+     */
     private YamlFile config;
 
     private final FileExtension fileExtension;
@@ -18,7 +30,7 @@ public class YamlManager {
      * The constructor to build everything we need to create/handle files.
      *
      * @param fileExtension the class that represents the values we need
-
+     */
     public YamlManager(FileExtension fileExtension) {
         this.fileExtension = fileExtension;
 
@@ -26,16 +38,9 @@ public class YamlManager {
     }
 
     /**
-     * Simply runs the load method with a choice of async or not.
-
-    public void handle() {
-        this.load();
-    }
-
-    /**
      * Loads or creates the file adding new comments or options.
-
-    private void load() {
+     */
+    public void load() {
         this.config = new YamlFile(file);
 
         try {
@@ -86,7 +91,7 @@ public class YamlManager {
      * @param path the path in the file
      * @param def the default values
      * @return the path in the file
-
+     */
     private Object getValue(String path, Object def) {
         if (this.config.get(path) == null) this.config.set(path, def, QuoteStyle.PLAIN);
 
@@ -99,8 +104,8 @@ public class YamlManager {
      * @param path the path in the file
      * @param comment the comments to set
      * @param commentType block type or side type
-
+     */
     private void setComments(String path, String comment, CommentType commentType) {
         this.config.setComment(path, comment, commentType);
     }
-}*/
+}

@@ -6,6 +6,7 @@ import us.crazycrew.crazycore.CrazyLogger;
 import us.crazycrew.crazycore.paper.PaperCore;
 import us.crazycrew.example.commands.TestCommand;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class CrazyExample extends JavaPlugin {
@@ -28,6 +29,12 @@ public class CrazyExample extends JavaPlugin {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new TestCommand(), this);
+
+        try {
+            TestUpdater.Test();
+        } catch (IOException e) {
+            CrazyLogger.info(e.getMessage());
+        }
     }
 
     @Override

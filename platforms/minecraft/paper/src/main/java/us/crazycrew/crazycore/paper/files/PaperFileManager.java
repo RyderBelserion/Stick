@@ -4,6 +4,7 @@ import us.crazycrew.crazycore.CrazyLogger;
 import us.crazycrew.crazycore.files.FileExtension;
 import us.crazycrew.crazycore.files.FileManager;
 import us.crazycrew.crazycore.files.types.JsonManager;
+import us.crazycrew.crazycore.files.types.YamlManager;
 import us.crazycrew.crazycore.utils.FileUtils;
 import java.io.File;
 import java.nio.file.Path;
@@ -14,7 +15,7 @@ import java.nio.file.Path;
 public final class PaperFileManager extends FileManager {
 
     private JsonManager jsonExtension;
-    // private YamlManager yamlExtension;
+    private YamlManager yamlExtension;
 
     /**
      * Constructor.
@@ -35,11 +36,11 @@ public final class PaperFileManager extends FileManager {
                 this.jsonExtension.load();
             }
 
-            //case YAML -> {
-            //    this.yamlExtension = new YamlManager(fileExtension);
+            case YAML -> {
+                this.yamlExtension = new YamlManager(fileExtension);
 
-            //    this.yamlExtension.handle();
-            //}
+                this.yamlExtension.load();
+            }
         }
     }
 
@@ -57,11 +58,11 @@ public final class PaperFileManager extends FileManager {
                 this.jsonExtension.save();
             }
 
-            //case YAML -> {
-            //    this.yamlExtension = new YamlManager(fileExtension);
+            case YAML -> {
+                this.yamlExtension = new YamlManager(fileExtension);
 
-            //    this.yamlExtension.handle();
-            //}
+                this.yamlExtension.load();
+            }
         }
     }
 
