@@ -19,12 +19,12 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveBaseName.set("${rootProject.name.lowercase()}+${projectDir.name}+${rootProject.version}.jar")
+        archiveBaseName.set("${rootProject.name}+Api+${rootProject.version}.jar")
 
         listOf(
             "org.jetbrains"
-        ).forEach {
-            relocate(it, "${rootProject.group}.library.$it")
+        ).forEach { pack ->
+            relocate(pack, "${rootProject.group}.$pack")
         }
     }
 
