@@ -3,6 +3,7 @@ plugins {
     `maven-publish`
 
     id("com.github.johnrengelman.shadow")
+    kotlin("jvm")
 }
 
 repositories {
@@ -11,8 +12,16 @@ repositories {
     maven("https://jitpack.io")
 }
 
+dependencies {
+    implementation(kotlin("stdlib"))
+}
+
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of("17"))
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 tasks {
@@ -20,5 +29,12 @@ tasks {
         options.encoding = Charsets.UTF_8.name()
 
         options.release.set(17)
+    }
+
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = "17"
+            javaParameters = true
+        }
     }
 }

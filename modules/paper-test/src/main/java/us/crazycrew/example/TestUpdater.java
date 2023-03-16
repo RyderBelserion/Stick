@@ -1,17 +1,14 @@
 package us.crazycrew.example;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
 import us.crazycrew.crazycore.CrazyLogger;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class TestUpdater {
+
+    protected TestUpdater() {}
 
     private static URL apiPage;
 
@@ -24,15 +21,14 @@ public class TestUpdater {
 
         HttpURLConnection connection = (HttpURLConnection) apiPage.openConnection();
 
+        connection.setRequestMethod("GET");
         connection.addRequestProperty("User-Agent", "CrazyCrates");
 
-        InputStream inputStream = connection.getInputStream();
-        InputStreamReader reader = new InputStreamReader(inputStream);
+        int responseCode = connection.getResponseCode();
 
-        Gson gson = new Gson();
-
-        String value = gson.fromJson(reader, JsonObject.class).get("version_number").getAsString();
-
-        Bukkit.getLogger().warning(value);
+        if (responseCode != 200) {
+            Bukkit.getLogger().warning("Cannot read the modrinth page.");
+            return;
+        }
     }
 }
