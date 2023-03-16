@@ -16,7 +16,7 @@ ktor = "2.2.4"
 # Minecraft
 papermc = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
 paperlib = { module = "io.papermc:paperlib", version = "1.0.8-SNAPSHOT" }
-paperweight = { module = "io.apermc.paperweight:paperweight-userdev", version = "1.5.3" }
+paperweight = { module = "io.papermc.paperweight:paperweight-userdev", version = "1.5.3" }
 
 mojang = { module = "com.mojang:authlib", version = "3.16.29" }
 
