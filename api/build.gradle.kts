@@ -29,8 +29,7 @@ tasks {
 
         listOf(
             "org.jetbrains",
-            "io.ktor",
-            "org.jetbrains.kotlin"
+            "io.ktor"
         ).forEach { pack ->
             relocate(pack, "${rootProject.group}.$pack")
         }

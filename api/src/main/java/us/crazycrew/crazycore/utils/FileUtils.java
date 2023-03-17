@@ -28,15 +28,13 @@ public class FileUtils {
     public static void extract(String input, Path output, boolean replace) {
         URL directory = FileUtils.class.getResource(input);
 
-        if (directory == null) CrazyLogger.info("Could not find the directory " + input);
+        if (directory == null) System.out.println("Could not find the directory " + input);
 
         assert directory != null;
-        if (!directory.getProtocol().equals("jar")) CrazyLogger.info("Failed extracting files because the directory protocol is not from a .jar file.");
+        if (!directory.getProtocol().equals("jar")) System.out.println("Failed extracting files because the directory protocol is not from a .jar file.");
 
         ZipFile jar;
         try {
-            CrazyLogger.info("Starting to extract files from " + input + " directory in the jar file.");
-
             jar = ((JarURLConnection) directory.openConnection()).getJarFile();
         } catch (Exception exception) {
             throw new RuntimeException(exception);
@@ -57,16 +55,10 @@ public class FileUtils {
             if (!replace && exists) continue;
 
             if (entry.isDirectory()) {
-                if (exists) {
-                    CrazyLogger.info("The file " + outFile.toFile().getName() + " already exists.");
-
-                    return;
-                }
+                if (exists) return;
 
                 try {
                     Files.createDirectories(outFile);
-
-                    CrazyLogger.info("The directory " + input + " has been created.");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -91,7 +83,7 @@ public class FileUtils {
                         Cause: %cause%
                         """;
 
-                CrazyLogger.debug(message.replaceAll("%cause%", exception.getMessage()));
+                System.out.println(message.replaceAll("%cause%", exception.getMessage()));
             }
         }
     }
