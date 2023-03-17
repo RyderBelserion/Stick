@@ -25,7 +25,7 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveBaseName.set("${rootProject.name}+Api+${rootProject.version}.jar")
+        archiveBaseName.set("${rootProject.name}+${projectDir.name}+${rootProject.version}.jar")
 
         listOf(
             "org.jetbrains"

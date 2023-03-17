@@ -14,7 +14,7 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveFileName.set("${rootProject.name}+Paper+${rootProject.version}.jar")
+        archiveFileName.set("${rootProject.name}+${projectDir.name}+${rootProject.version}.jar")
     }
 
     javadoc {
@@ -46,7 +46,7 @@ publishing {
 
         create<MavenPublication>("maven") {
             groupId = rootProject.group.toString()
-            artifactId = "${rootProject.name.lowercase()}-Paper"
+            artifactId = "${rootProject.name.lowercase()}-${projectDir.name}"
             version = rootProject.version.toString()
 
             from(components["java"])
