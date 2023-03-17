@@ -25,7 +25,9 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveBaseName.set("${rootProject.name}+${projectDir.name}+${rootProject.version}.jar")
+        archiveBaseName.set("${rootProject.name}-Api")
+
+        archiveClassifier.set("")
 
         listOf(
             "org.jetbrains",
@@ -56,12 +58,12 @@ publishing {
             }
         }
 
-        create<MavenPublication>("maven") {
-            groupId = rootProject.group.toString()
-            artifactId = "${rootProject.name.lowercase()}-${projectDir.name}"
-            version = rootProject.version.toString()
+        //create<MavenPublication>("maven") {
+        //    groupId = rootProject.group.toString()
+        //    artifactId = "${rootProject.name.lowercase()}-${projectDir.name}"
+        //    version = rootProject.version.toString()
 
-            from(components["java"])
-        }
+        //    artifact(tasks["shadowJar"])
+        //}
     }
 }

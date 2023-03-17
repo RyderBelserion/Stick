@@ -14,7 +14,9 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveFileName.set("${rootProject.name}+${projectDir.name}+${rootProject.version}.jar")
+        archiveBaseName.set("${rootProject.name}-Paper")
+
+        archiveClassifier.set("")
     }
 
     javadoc {
@@ -50,6 +52,7 @@ publishing {
             version = rootProject.version.toString()
 
             from(components["java"])
+            artifact(tasks["shadowJar"])
         }
     }
 }
