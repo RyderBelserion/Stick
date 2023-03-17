@@ -28,7 +28,9 @@ tasks {
         archiveBaseName.set("${rootProject.name}+${projectDir.name}+${rootProject.version}.jar")
 
         listOf(
-            "org.jetbrains"
+            "org.jetbrains",
+            "io.ktor",
+            "org.jetbrains.kotlin"
         ).forEach { pack ->
             relocate(pack, "${rootProject.group}.$pack")
         }
