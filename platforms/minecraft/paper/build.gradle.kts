@@ -14,9 +14,7 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveBaseName.set("${rootProject.name}+Paper")
-
-        archiveClassifier.set("")
+        archiveFileName.set("${rootProject.name}+Paper+${rootProject.version}.jar")
     }
 
     javadoc {
