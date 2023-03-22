@@ -28,12 +28,13 @@ public class FileUtils {
     public static void extract(String input, Path output, boolean replace) {
         URL directory = FileUtils.class.getResource(input);
 
-        if (directory == null) System.out.println("Could not find the directory " + input);
+        if (directory == null) System.out.println("[CrazyCore] Could not find the directory " + input);
 
         assert directory != null;
-        if (!directory.getProtocol().equals("jar")) System.out.println("Failed extracting files because the directory protocol is not from a .jar file.");
+        if (!directory.getProtocol().equals("jar")) System.out.println("[CrazyCore] Failed extracting files because the directory protocol is not from a .jar file.");
 
         ZipFile jar;
+
         try {
             jar = ((JarURLConnection) directory.openConnection()).getJarFile();
         } catch (Exception exception) {
@@ -83,7 +84,7 @@ public class FileUtils {
                         Cause: %cause%
                         """;
 
-                System.out.println(message.replaceAll("%cause%", exception.getMessage()));
+                System.out.println("[CrazyCore] " + message.replaceAll("%cause%", exception.getMessage()));
             }
         }
     }

@@ -1,5 +1,6 @@
 package us.crazycrew.crazycore.files;
 
+import us.crazycrew.crazycore.files.types.YamlManager;
 import us.crazycrew.crazycore.utils.FileUtils;
 import us.crazycrew.crazycore.files.types.JsonManager;
 import java.io.File;
@@ -12,7 +13,7 @@ import java.nio.file.Path;
 public class FileHandler extends FileManager {
 
     private JsonManager jsonManager;
-    //private YamlManager yamlManager;
+    private YamlManager yamlManager;
 
     /**
      * Adds a file to the server.
@@ -27,10 +28,10 @@ public class FileHandler extends FileManager {
                 this.jsonManager.load();
             }
 
-            //case YAML -> {
-            //    this.yamlManager = new YamlManager(fileExtension);
-            //    this.yamlManager.handle();
-            //}
+            case YAML -> {
+                this.yamlManager = new YamlManager(fileExtension);
+                this.yamlManager.load();
+            }
 
             case SQLITE -> {
 
@@ -53,10 +54,10 @@ public class FileHandler extends FileManager {
                 this.jsonManager.save();
             }
 
-            //case YAML -> {
-            //    this.yamlManager = new YamlManager(fileExtension);
-            //    this.yamlManager.handle();
-            //}
+            case YAML -> {
+                this.yamlManager = new YamlManager(fileExtension);
+                this.yamlManager.load();
+            }
 
             case SQLITE -> {
 

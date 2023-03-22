@@ -51,8 +51,6 @@ public class YamlManager {
 
         Field[] fields = this.fileExtension.getClass().getDeclaredFields();
 
-        //this.config.options().quoteStyleDefaults().setDefaultQuoteStyle(QuoteStyle.PLAIN);
-
         this.config.options().charset(StandardCharsets.UTF_8);
 
         for (Field field : fields) {
