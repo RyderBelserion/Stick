@@ -21,8 +21,6 @@ tasks {
     shadowJar {
         archiveBaseName.set("${rootProject.name}-API-${rootProject.version}")
 
-        archiveClassifier.set("")
-
         listOf(
             "org.jetbrains",
             "io.ktor"
@@ -46,7 +44,7 @@ publishing {
             }
         }
 
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("api") {
             groupId = rootProject.group.toString()
             artifactId = "${rootProject.name.lowercase()}-${projectDir.name}"
             version = rootProject.version.toString()
