@@ -6,8 +6,6 @@ plugins {
 
 dependencies {
     api(project(":crazycore-paper"))
-
-    compileOnly(libs.papermc)
 }
 
 val description = "A test plugin."

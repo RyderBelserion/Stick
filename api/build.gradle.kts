@@ -12,12 +12,6 @@ dependencies {
     // Yaml.
     api(libs.yaml)
 
-    // Kotlin.
-    api(libs.ktor.core)
-    api(libs.ktor.cio)
-    api(libs.ktor.content)
-    api(libs.ktor.gson)
-
     // Kyori.
     compileOnly(libs.kyori)
     compileOnly(libs.kyori.mm)
@@ -25,7 +19,7 @@ dependencies {
 
 tasks {
     shadowJar {
-        archiveBaseName.set("${rootProject.name}-Api")
+        archiveBaseName.set("${rootProject.name}-API-${rootProject.version}")
 
         archiveClassifier.set("")
 
@@ -46,24 +40,18 @@ tasks {
 publishing {
     publications {
         repositories {
-            maven("https://repo.crazycrew.us/libraries") {
+            maven("https://repo.crazycrew.us/api") {
                 name = "crazycrew"
-                // Used for locally publishing.
                 credentials(PasswordCredentials::class)
-
-                credentials {
-                    username = System.getenv("REPOSITORY_USERNAME")
-                    password = System.getenv("REPOSITORY_PASSWORD")
-                }
             }
         }
 
-        //create<MavenPublication>("maven") {
-        //    groupId = rootProject.group.toString()
-        //    artifactId = "${rootProject.name.lowercase()}-${projectDir.name}"
-        //    version = rootProject.version.toString()
+        create<MavenPublication>("maven") {
+            groupId = rootProject.group.toString()
+            artifactId = "${rootProject.name.lowercase()}-${projectDir.name}"
+            version = rootProject.version.toString()
 
-        //    artifact(tasks["shadowJar"])
-        //}
+            from(components["java"])
+        }
     }
 }

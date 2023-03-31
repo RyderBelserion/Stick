@@ -1,22 +1,20 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-
 plugins {
     id("crazycore.paper-plugin")
 }
 
 dependencies {
-    compileOnly(libs.papermc)
-
     compileOnly(libs.mojang)
 
     api(project(":crazycore-api"))
 }
 
 tasks {
-    shadowJar {
-        archiveBaseName.set("${rootProject.name}-Paper")
+    reobfJar {
+        val file = File("$rootDir/jars")
 
-        archiveClassifier.set("")
+        if (!file.exists()) file.mkdirs()
+
+        outputJar.set(layout.buildDirectory.file("$file/${rootProject.name}-Paper-${rootProject.version}.jar"))
     }
 
     javadoc {
@@ -34,15 +32,9 @@ tasks {
 publishing {
     publications {
         repositories {
-            maven("https://repo.crazycrew.us/libraries") {
+            maven("https://repo.crazycrew.us/api") {
                 name = "crazycrew"
-                // Used for locally publishing.
                 credentials(PasswordCredentials::class)
-
-                credentials {
-                    username = System.getenv("REPOSITORY_USERNAME")
-                    password = System.getenv("REPOSITORY_PASSWORD")
-                }
             }
         }
 
@@ -52,7 +44,6 @@ publishing {
             version = rootProject.version.toString()
 
             from(components["java"])
-            artifact(tasks["shadowJar"])
         }
     }
 }

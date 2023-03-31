@@ -32,6 +32,7 @@ ktor-gson = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = 
 
 kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin"}
+kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.6.4" }
 
 shadow = { module = "com.github.johnrengelman:shadow", version = "8.1.0" }
 
@@ -40,3 +41,5 @@ gson = { module = "com.google.code.gson:gson", version = "2.10.1" }
 yaml = { module = "me.carleslc.Simple-YAML:Simple-Yaml", version = "1.8.3" }
 
 jetbrains = { module = "org.jetbrains:annotations", version = "23.0.0" }
+
+turtle = { module = "com.lordcodes.turtle:turtle", version = "0.8.0" }
