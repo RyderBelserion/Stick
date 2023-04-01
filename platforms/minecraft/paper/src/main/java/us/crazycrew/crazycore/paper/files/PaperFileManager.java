@@ -1,6 +1,6 @@
 package us.crazycrew.crazycore.paper.files;
 
-import us.crazycrew.crazycore.CrazyLogger;
+import org.bukkit.Bukkit;
 import us.crazycrew.crazycore.files.FileExtension;
 import us.crazycrew.crazycore.files.FileManager;
 import us.crazycrew.crazycore.files.types.JsonManager;
@@ -91,8 +91,7 @@ public final class PaperFileManager extends FileManager {
      */
     public void extract(String value, Path directory) {
         File newDirectory = new File(directory + value);
-
-        if (newDirectory.mkdirs()) CrazyLogger.debug("Created " + newDirectory.getName() + " folder.");
+        newDirectory.mkdirs();
 
         FileUtils.extract(value, directory, false);
     }

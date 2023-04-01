@@ -30,7 +30,6 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.util.Consumer;
-import us.crazycrew.crazycore.CrazyLogger;
 import us.crazycrew.crazycore.paper.utils.ItemChecker;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
@@ -143,7 +142,7 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
             LORE_FIELD = metaClass.getDeclaredField("lore");
             LORE_FIELD.setAccessible(true);
         } catch (NoSuchFieldException | ClassNotFoundException exception) {
-            CrazyLogger.info("Failed to make the lore field accessible as it was not found. Perhaps an invalid item was supplied?");
+            //CrazyLogger.info("Failed to make the lore field accessible as it was not found. Perhaps an invalid item was supplied?");
         }
 
         this.material = itemStack.getType();
@@ -325,7 +324,7 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
 
                 addItemFlag(itemFlag);
             } catch (Exception exception) {
-                CrazyLogger.info("Failed to add item flag: " + flag + ". The flag is invalid!");
+                //CrazyLogger.info("Failed to add item flag: " + flag + ". The flag is invalid!");
             }
         });
 
@@ -352,8 +351,8 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
      */
     public Base setValue(String material) {
         if (material == null || material.isEmpty()) {
-            CrazyLogger.info("Material cannot be null or empty, Output: " + material + ".");
-            CrazyLogger.info("Please take a screenshot of this before asking for support.");
+            //CrazyLogger.info("Material cannot be null or empty, Output: " + material + ".");
+            //CrazyLogger.info("Please take a screenshot of this before asking for support.");
 
             return (Base) this;
         }
@@ -370,7 +369,7 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
                 try {
                     this.potionType = PotionType.valueOf(sectionOne[1]);
                 } catch (Exception exception) {
-                    CrazyLogger.info("Failed to set potion type " + sectionOne[1] + ". The potion type inputted is invalid.");
+                    //CrazyLogger.info("Failed to set potion type " + sectionOne[1] + ". The potion type inputted is invalid.");
                 }
 
                 this.potionColor = getColor(sectionTwo[1]);
@@ -561,7 +560,7 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
 
             this.addGlow();
         } else {
-            CrazyLogger.info("Material cannot be AIR.");
+            //CrazyLogger.info("Material cannot be AIR.");
         }
 
         this.itemStack.setItemMeta(this.itemMeta);
@@ -643,7 +642,7 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
 
             field.setAccessible(true);
         } catch (NoSuchFieldException exception) {
-            CrazyLogger.info("Failed to make the meta field for profile accessible as it was not found. Perhaps an invalid item meta or field supplied?");
+            //CrazyLogger.info("Failed to make the meta field for profile accessible as it was not found. Perhaps an invalid item meta or field supplied?");
 
             field = null;
         }
@@ -800,8 +799,8 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         try {
             this.profile.set(skullMeta, gameProfile);
         } catch (Exception exception) {
-            CrazyLogger.info("Failed to set the meta & game profile. Perhaps an invalid texture?");
-            CrazyLogger.info("Your Input: " + texture + ".");
+            //CrazyLogger.info("Failed to set the meta & game profile. Perhaps an invalid texture?");
+            //CrazyLogger.info("Your Input: " + texture + ".");
         }
 
         setItemMeta(skullMeta);
