@@ -1,6 +1,5 @@
 package us.crazycrew.crazycore.paper.files;
 
-import org.bukkit.Bukkit;
 import us.crazycrew.crazycore.files.FileExtension;
 import us.crazycrew.crazycore.files.FileManager;
 import us.crazycrew.crazycore.files.types.JsonManager;
