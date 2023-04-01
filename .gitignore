@@ -7,5 +7,5 @@ api/.gradle
 buildSrc/build
 buildSrc/.gradle
 
-minecraft/minecraft/paper/.gradle
-minecraft/minecraft/paper/build
+minecraft/paper/build
+minecraft/paper/.gradle
