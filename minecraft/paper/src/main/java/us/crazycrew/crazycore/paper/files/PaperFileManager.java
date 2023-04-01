@@ -17,11 +17,6 @@ public final class PaperFileManager extends FileManager {
     private YamlManager yamlExtension;
 
     /**
-     * Constructor.
-
-    public PaperFileManager() {}
-
-    /**
      * Adds a file to the server.
      *
      * @param fileExtension the {@link FileExtension} to be added
