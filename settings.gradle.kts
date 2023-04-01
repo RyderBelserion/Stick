@@ -16,9 +16,7 @@ val lowerCase = rootProject.name.lowercase()
 
 listOf("api").forEach(::includeProject)
 
-listOf("paper").forEach(::includeMinecraftType)
-
-listOf("paper-test").forEach(::includeModule)
+listOf("paper").forEach(::includeType)
 
 fun includeProject(name: String) {
     include(name) {
@@ -33,17 +31,10 @@ fun includeModule(name: String) {
     }
 }
 
-fun includeMinecraftType(name: String) {
+fun includeType(name: String) {
     include(name) {
         this.name = "$lowerCase-$name"
-        this.projectDir = file("platforms/minecraft/$name")
-    }
-}
-
-fun includeDiscordType(name: String) {
-    include(name) {
-        this.name = "$lowerCase-$name"
-        this.projectDir = file("platforms/discord/$name")
+        this.projectDir = file("minecraft/$name")
     }
 }
 

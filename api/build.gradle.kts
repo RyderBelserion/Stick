@@ -11,22 +11,15 @@ dependencies {
 
     // Yaml.
     api(libs.yaml)
-
-    // Kyori.
-    compileOnly(libs.kyori)
-    compileOnly(libs.kyori.mm)
 }
 
 tasks {
     shadowJar {
         archiveBaseName.set("${rootProject.name}-API-${rootProject.version}")
 
-        listOf(
-            "org.jetbrains",
-            "io.ktor"
-        ).forEach { pack ->
-            relocate(pack, "${rootProject.group}.$pack")
-        }
+        fun reloc(pkg: String) = relocate(pkg, "${rootProject.group}.dependency.$pkg")
+
+        reloc("org.jetbrains")
     }
 
     javadoc {

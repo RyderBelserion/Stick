@@ -1,16 +1,11 @@
 .gradle
-buildSrc/.gradle
-
 .idea
 
 api/build
+api/.gradle
+
 buildSrc/build
+buildSrc/.gradle
 
-modules/paper-test/build
-modules/paper-test/run/
-modules/paper-test/.gradle
-!modules/paper-test/run/eula.txt
-
-platforms/minecraft/paper/build
-
-jars/
+minecraft/paper/build
+minecraft/paper/.gradle

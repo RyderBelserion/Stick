@@ -1,6 +1,5 @@
 package us.crazycrew.crazycore.utils;
 
-import us.crazycrew.crazycore.CrazyLogger;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
