@@ -1,0 +1,8 @@
+name: CrazyExample
+main: us.crazycrew.crazycore.CrazyExample
+
+authors: [RyderBelserion]
+
+version: 1.0.0
+api-version: '1.19'
+description: A test plugin.

@@ -16,7 +16,7 @@ val lowerCase = rootProject.name.lowercase()
 
 listOf("api").forEach(::includeProject)
 
-listOf("paper").forEach(::includeType)
+listOf("paper", "paper-plugin").forEach(::includeType)
 
 fun includeProject(name: String) {
     include(name) {
