@@ -21,6 +21,9 @@ paperweight = { module = "io.papermc.paperweight:paperweight-userdev", version =
 
 mojang = { module = "com.mojang:authlib", version = "3.16.29" }
 
+# Packets
+packetevents = { module = "com.github.retrooper.packetevents:spigot", version = "2.0-SNAPSHOT" }
+
 kyori = { module = "net.kyori:adventure-api", version.ref = "kyori" }
 kyori-mm = { module = "net.kyori:adventure-text-minimessage", version.ref = "kyori" }
 
