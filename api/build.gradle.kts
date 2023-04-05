@@ -11,6 +11,10 @@ dependencies {
 
     // Yaml.
     api(libs.yaml)
+
+    // Adventure.
+    compileOnly(libs.kyori)
+    compileOnly(libs.kyori.mm)
 }
 
 tasks {

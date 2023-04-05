@@ -1,0 +1,9 @@
+name: CrazyExample
+main: us.crazycrew.example.CrazyExample
+
+version: '1.0.0'
+api-version: '1.19'
+description: 'test plugin'
+
+bootstrapper: us.crazycrew.example.CrazyLoader
+#loader: us.crazycrew.example.CrazyExample

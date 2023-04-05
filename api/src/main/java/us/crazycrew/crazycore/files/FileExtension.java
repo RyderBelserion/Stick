@@ -1,5 +1,6 @@
 package us.crazycrew.crazycore.files;
 
+import us.crazycrew.crazycore.CrazyCore;
 import us.crazycrew.crazycore.files.enums.FileType;
 import java.nio.file.Path;
 
@@ -13,6 +14,19 @@ public abstract class FileExtension {
     private final FileType fileType;
 
     private boolean isData;
+
+    /**
+     * Constructor to build a file.
+     *
+     * @param fileName the name of the file
+     */
+    public FileExtension(final String fileName, final FileType fileType) {
+        this.fileName = fileName;
+
+        this.filePath = CrazyCore.api().getDirectory();
+
+        this.fileType = fileType;
+    }
 
     /**
      * Constructor to build a file at a specific path.

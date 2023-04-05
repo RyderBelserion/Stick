@@ -9,3 +9,6 @@ buildSrc/.gradle
 
 minecraft/paper/build
 minecraft/paper/.gradle
+
+!minecraft/paper-plugin/run/eula.txt
+minecraft/paper-plugin/run
