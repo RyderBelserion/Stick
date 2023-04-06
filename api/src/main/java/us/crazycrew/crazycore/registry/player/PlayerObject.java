@@ -6,7 +6,6 @@ import us.crazycrew.crazycore.senders.Player;
 import us.crazycrew.crazycore.utils.AdventureUtils;
 import net.kyori.adventure.text.ComponentLike;
 import org.jetbrains.annotations.NotNull;
-
 import java.net.URL;
 import java.util.UUID;
 
@@ -41,7 +40,7 @@ public abstract class PlayerObject extends Player {
     public abstract String getName();
 
     /**
-     * @return player's UUID
+     * @return player's uuid
      */
     @NotNull
     public abstract UUID getUUID();
@@ -56,6 +55,11 @@ public abstract class PlayerObject extends Player {
      * @return player's health
      */
     public abstract int getHealth();
+
+    /**
+     * @return player's ping
+     */
+    public abstract int getPing();
 
     @Override
     public void send(boolean hasPrefix, String prefix, @NotNull ComponentLike message) {

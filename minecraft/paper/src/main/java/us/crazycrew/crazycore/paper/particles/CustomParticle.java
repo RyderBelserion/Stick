@@ -21,6 +21,7 @@ public class CustomParticle {
      */
     public CustomParticle init(Particle particle, Location location) {
         particleBuilder = new com.destroystokyo.paper.ParticleBuilder(particle);
+
         this.location = location;
         return this;
     }

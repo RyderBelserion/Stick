@@ -3,6 +3,7 @@ package us.crazycrew.crazycore.paper.player;
 import net.kyori.adventure.audience.MessageType;
 import net.kyori.adventure.identity.Identity;
 import net.kyori.adventure.text.Component;
+import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -36,6 +37,10 @@ public class PaperPlayerObject extends PlayerObject {
         return this.player;
     }
 
+    public CraftPlayer getCraftPlayer() {
+        return (CraftPlayer) this.player;
+    }
+
     /**
      * @return the player name
      */
@@ -61,6 +66,11 @@ public class PaperPlayerObject extends PlayerObject {
     @Override
     public int getHealth() {
         return (int) Math.round(this.player.getHealth());
+    }
+
+    @Override
+    public int getPing() {
+        return getCraftPlayer().getPing();
     }
 
     /**
