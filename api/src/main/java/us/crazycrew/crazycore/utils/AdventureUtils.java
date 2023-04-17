@@ -1,6 +1,7 @@
 package us.crazycrew.crazycore.utils;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
@@ -18,9 +19,13 @@ public class AdventureUtils {
      * @param placeholders message placeholders
      * @return a deserialized component
      */
-    public static Component parse(@NotNull String message, @NotNull TagResolver.Single... placeholders) {
-        return MiniMessage.miniMessage().deserialize(message, placeholders);
+    public static Component parse(@NotNull String message, boolean hasItalics, @NotNull TagResolver.Single... placeholders) {
+        return MiniMessage.miniMessage().deserialize(message, placeholders).decoration(TextDecoration.ITALIC, hasItalics);
     }
+
+    //public static Component parse(@NotNull String message, boolean italics) {
+    //    return MiniMessage.miniMessage().deserialize(message).decoration(TextDecoration.ITALIC, italics);
+    //}
 
     /**
      * Replaces a single placeholder.

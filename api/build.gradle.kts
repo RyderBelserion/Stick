@@ -15,6 +15,12 @@ dependencies {
     // Adventure.
     compileOnly(libs.kyori)
     compileOnly(libs.kyori.mm)
+
+    implementation("cloud.commandframework", "cloud-core", "1.8.3")
+    implementation("cloud.commandframework", "cloud-brigadier", "1.8.3")
+    implementation("cloud.commandframework", "cloud-minecraft-extras", "1.8.3") {
+        exclude("net.kyori")
+    }
 }
 
 tasks {

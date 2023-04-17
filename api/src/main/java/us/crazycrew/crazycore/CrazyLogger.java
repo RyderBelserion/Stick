@@ -98,7 +98,7 @@ public class CrazyLogger {
         @Override
         public void info(String message) {
             // Send through ConsoleSender so logger will strip colors before putting in log file
-            CrazyCore.api().getConsole().send(CrazyCore.api().getProjectPrefix(), AdventureUtils.parse(message));
+            CrazyCore.api().getConsole().send(CrazyCore.api().getProjectPrefix(), AdventureUtils.parse(message, false));
         }
 
         /**

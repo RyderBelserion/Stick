@@ -9,14 +9,6 @@ dependencies {
 }
 
 tasks {
-    reobfJar {
-        val file = File("$rootDir/jars")
-
-        if (!file.exists()) file.mkdirs()
-
-        outputJar.set(layout.buildDirectory.file("$file/${rootProject.name}-Paper-${rootProject.version}.jar"))
-    }
-
     javadoc {
         title = "CrazyCore Paper - ${rootProject.version}"
         description = "The paper extension of CrazyCore"

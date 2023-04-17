@@ -62,7 +62,7 @@ public abstract class PlayerObject extends Player {
     public abstract int getPing();
 
     @Override
-    public void send(boolean hasPrefix, String prefix, @NotNull ComponentLike message) {
-        sendMessage(hasPrefix ? AdventureUtils.parse(prefix).append(message) : message);
+    public void send(boolean hasPrefix, boolean hasItalics, String prefix, @NotNull ComponentLike message) {
+        sendMessage(hasPrefix ? AdventureUtils.parse(prefix, hasItalics).append(message) : message);
     }
 }

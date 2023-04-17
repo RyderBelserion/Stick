@@ -26,7 +26,7 @@ public abstract class Console extends Player {
      * @param message message to send
      */
     @Override
-    public void send(boolean prefix, String value, @NotNull ComponentLike message) {
-        sendMessage(AdventureUtils.parse(value).append(message));
+    public void send(boolean prefix, boolean hasItalics, String value, @NotNull ComponentLike message) {
+        sendMessage(AdventureUtils.parse(value, hasItalics).append(message));
     }
 }

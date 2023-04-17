@@ -30,7 +30,7 @@ public abstract class Player extends Keyed implements Audience {
      * @param placeholders message placeholders
      */
     public void send(String prefix, String message, @NotNull TagResolver.Single... placeholders) {
-        send(true, message, prefix, placeholders);
+        send(true, false, message, prefix, placeholders);
     }
 
     /**
@@ -41,11 +41,11 @@ public abstract class Player extends Keyed implements Audience {
      * @param message message to send
      * @param placeholders message placeholders
      */
-    public void send(boolean hasPrefix, String prefix, String message, @NotNull TagResolver.Single... placeholders) {
+    public void send(boolean hasPrefix, boolean hasItalics, String prefix, String message, @NotNull TagResolver.Single... placeholders) {
         if (message == null) return;
 
         for (String splitMessage : message.split("\n")) {
-            send(hasPrefix, prefix, AdventureUtils.parse(splitMessage, placeholders));
+            send(hasPrefix, hasItalics, prefix, AdventureUtils.parse(splitMessage, hasItalics, placeholders));
         }
     }
 
@@ -55,7 +55,7 @@ public abstract class Player extends Keyed implements Audience {
      * @param message message to send
      */
     public void send(@NotNull ComponentLike message) {
-        send(false, "", message);
+        send(false, false, "", message);
     }
 
     /**
@@ -65,7 +65,7 @@ public abstract class Player extends Keyed implements Audience {
      * @param message message to send
      */
     public void send(String prefix, @NotNull ComponentLike message) {
-        send(true, prefix, message);
+        send(true, false, prefix, message);
     }
 
     /**
@@ -75,5 +75,5 @@ public abstract class Player extends Keyed implements Audience {
      * @param prefix prefix to include
      * @param message message to send
      */
-    public abstract void send(boolean hasPrefix, String prefix, @NotNull ComponentLike message);
+    public abstract void send(boolean hasPrefix, boolean hasItalics, String prefix, @NotNull ComponentLike message);
 }
