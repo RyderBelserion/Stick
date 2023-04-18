@@ -1,14 +1,9 @@
 package us.crazycrew.crazycore.paper;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import net.kyori.adventure.audience.Audience;
 import org.jetbrains.annotations.NotNull;
 import us.crazycrew.crazycore.CrazyCore;
 import us.crazycrew.crazycore.files.FileHandler;
-import us.crazycrew.crazycore.paper.files.PaperFileManager;
-import us.crazycrew.crazycore.paper.player.PaperPlayerHandler;
-import us.crazycrew.crazycore.paper.player.PaperPlayerRegistry;
-import us.crazycrew.crazycore.registry.player.PlayerRegistry;
-import us.crazycrew.crazycore.senders.Console;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.file.Path;
@@ -18,13 +13,11 @@ import java.nio.file.Path;
  */
 public class PaperCore implements CrazyCore {
 
-    private final PaperFileManager fileManager;
     private final FileHandler fileHandler;
     private final String projectName;
     private final Path path;
 
-    private PaperPlayerRegistry playerRegistry;
-    private PaperConsole console;
+    private Audience audience;
     private String projectPrefix;
 
     /**
@@ -52,20 +45,6 @@ public class PaperCore implements CrazyCore {
         file.mkdir();
 
         this.fileHandler = new FileHandler();
-
-        this.fileManager = new PaperFileManager();
-    }
-
-    /**
-     * Called in the plugin onEnable.
-     * Creates the player registry and adds the listener.
-     *
-     * @param plugin instance of the plugin
-     */
-    public void createPlayerRegistry(JavaPlugin plugin) {
-        if (this.playerRegistry == null) setPlayerRegistry(new PaperPlayerRegistry());
-
-        plugin.getServer().getPluginManager().registerEvents(new PaperPlayerHandler(), plugin);
     }
 
     /**
@@ -114,41 +93,11 @@ public class PaperCore implements CrazyCore {
         return this.fileHandler;
     }
 
-    /**
-     * @return the file manager instance for paper
-     */
-    public PaperFileManager getFileManager() {
-        return this.fileManager;
+    public void setConsole(Audience audience) {
+        this.audience = audience;
     }
 
-    /**
-     * Sets the paper console variable.
-     *
-     * @param paperConsole the paper console instance
-     */
-    public void setConsole(PaperConsole paperConsole) {
-        this.console = paperConsole;
-    }
-
-    /**
-     * @return the paper console instance
-     */
-    @Override
-    public @NotNull Console getConsole() {
-        return this.console;
-    }
-
-    /**
-     * Sets the paper player registry variable.
-     *
-     * @param paperPlayerRegistry the paper player registry instance
-     */
-    public void setPlayerRegistry(PaperPlayerRegistry paperPlayerRegistry) {
-        this.playerRegistry = paperPlayerRegistry;
-    }
-
-    @Override
-    public @NotNull PlayerRegistry getPlayerRegistry() {
-        return this.playerRegistry;
+    public @NotNull Audience getAudience() {
+        return this.audience;
     }
 }

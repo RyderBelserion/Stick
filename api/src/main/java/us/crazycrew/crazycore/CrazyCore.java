@@ -1,9 +1,9 @@
 package us.crazycrew.crazycore;
 
+import net.kyori.adventure.audience.Audience;
 import org.jetbrains.annotations.NotNull;
 import us.crazycrew.crazycore.files.FileHandler;
-import us.crazycrew.crazycore.registry.player.PlayerRegistry;
-import us.crazycrew.crazycore.senders.Console;
+
 import java.nio.file.Path;
 
 public interface CrazyCore {
@@ -51,15 +51,7 @@ public interface CrazyCore {
     /**
      * @return the console sender
      */
-    @NotNull Console getConsole();
-
-
-    /**
-     * Used to handle uuids and other data for multi-platform support.
-     *
-     * @return the player registry
-     */
-    @NotNull PlayerRegistry getPlayerRegistry();
+    @NotNull Audience getAudience();
 
     enum Platforms {
         PAPER

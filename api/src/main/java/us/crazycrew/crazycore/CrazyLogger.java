@@ -1,7 +1,7 @@
 package us.crazycrew.crazycore;
 
+import net.kyori.adventure.text.Component;
 import us.crazycrew.crazycore.utils.AdventureUtils;
-
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -97,8 +97,9 @@ public class CrazyLogger {
          */
         @Override
         public void info(String message) {
-            // Send through ConsoleSender so logger will strip colors before putting in log file
-            CrazyCore.api().getConsole().send(CrazyCore.api().getProjectPrefix(), AdventureUtils.parse(message, false));
+            Component msg = AdventureUtils.parse(CrazyCore.api().getProjectPrefix() + message, false);
+
+            CrazyCore.api().getAudience().sendMessage(msg);
         }
 
         /**

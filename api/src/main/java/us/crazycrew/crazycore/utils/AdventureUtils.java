@@ -23,10 +23,6 @@ public class AdventureUtils {
         return MiniMessage.miniMessage().deserialize(message, placeholders).decoration(TextDecoration.ITALIC, hasItalics);
     }
 
-    //public static Component parse(@NotNull String message, boolean italics) {
-    //    return MiniMessage.miniMessage().deserialize(message).decoration(TextDecoration.ITALIC, italics);
-    //}
-
     /**
      * Replaces a single placeholder.
      *

@@ -2,12 +2,11 @@ package us.crazycrew.example;
 
 import io.papermc.paper.plugin.bootstrap.PluginBootstrap;
 import io.papermc.paper.plugin.bootstrap.PluginProviderContext;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import us.crazycrew.crazycore.CrazyLogger;
-import us.crazycrew.crazycore.paper.PaperConsole;
 import us.crazycrew.crazycore.paper.PaperCore;
-import us.crazycrew.crazycore.paper.player.PaperPlayerRegistry;
 import java.util.logging.LogManager;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -22,11 +21,8 @@ public class CrazyLoader implements PluginBootstrap {
 
     @Override
     public @NotNull JavaPlugin createPlugin(@NotNull PluginProviderContext context) {
-        // Create the player registry.
-        this.paperCore.setPlayerRegistry(new PaperPlayerRegistry());
-
         // Create the console instance.
-        this.paperCore.setConsole(new PaperConsole());
+        this.paperCore.setConsole(Bukkit.getConsoleSender());
 
         // Set the project prefix.
         this.paperCore.setPrefix("<gradient:#fe5f55:#6b55b5>[CrazyExample]</gradient> ");

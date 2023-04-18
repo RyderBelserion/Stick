@@ -16,11 +16,11 @@ dependencies {
     compileOnly(libs.kyori)
     compileOnly(libs.kyori.mm)
 
-    implementation("cloud.commandframework", "cloud-core", "1.8.3")
-    implementation("cloud.commandframework", "cloud-brigadier", "1.8.3")
-    implementation("cloud.commandframework", "cloud-minecraft-extras", "1.8.3") {
-        exclude("net.kyori")
-    }
+    //implementation("cloud.commandframework", "cloud-core", "1.8.3")
+    //implementation("cloud.commandframework", "cloud-brigadier", "1.8.3")
+    //implementation("cloud.commandframework", "cloud-minecraft-extras", "1.8.3") {
+    //    exclude("net.kyori")
+    //}
 }
 
 tasks {
@@ -30,11 +30,6 @@ tasks {
         fun reloc(pkg: String) = relocate(pkg, "${rootProject.group}.dependency.$pkg")
 
         reloc("org.jetbrains")
-    }
-
-    javadoc {
-        title = "CrazyCore Base - ${rootProject.version}"
-        description = "The base extension of CrazyCore"
     }
 }
 

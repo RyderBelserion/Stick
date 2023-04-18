@@ -9,13 +9,6 @@ dependencies {
 }
 
 tasks {
-    javadoc {
-        title = "CrazyCore Paper - ${rootProject.version}"
-        description = "The paper extension of CrazyCore"
-
-        options.encoding = Charsets.UTF_8.name()
-    }
-
     processResources {
         filteringCharset = Charsets.UTF_8.name()
     }
