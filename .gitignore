@@ -1,14 +1,4 @@
 .gradle
 .idea
 
-api/build
-api/.gradle
-
-buildSrc/build
-buildSrc/.gradle
-
-minecraft/paper/build
-minecraft/paper/.gradle
-
-!minecraft/paper-plugin/run/eula.txt
-minecraft/paper-plugin/run
+build
