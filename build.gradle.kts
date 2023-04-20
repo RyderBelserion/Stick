@@ -40,3 +40,27 @@ tasks {
         filteringCharset = Charsets.UTF_8.name()
     }
 }
+
+publishing {
+    repositories {
+        maven("https://repo.crazycrew.us/api") {
+            name = "crazycrew"
+            //credentials(PasswordCredentials::class)
+
+            credentials {
+                username = System.getenv("REPOSITORY_USERNAME")
+                password = System.getenv("REPOSITORY_PASSWORD")
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = rootProject.group.toString()
+            artifactId = "${rootProject.name.lowercase()}-api"
+            version = rootProject.version.toString()
+
+            from(components["java"])
+        }
+    }
+}
