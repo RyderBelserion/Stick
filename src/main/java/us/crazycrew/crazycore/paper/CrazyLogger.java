@@ -1,7 +1,10 @@
 package us.crazycrew.crazycore.paper;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
 import us.crazycrew.crazycore.paper.utils.AdventureUtils;
 
 import java.util.function.Supplier;
@@ -100,6 +103,24 @@ public class CrazyLogger {
         @Override
         public void info(String message) {
             Component msg = AdventureUtils.parse(CrazyCore.getProjectPrefix() + message, false);
+
+            Bukkit.getConsoleSender().sendMessage(msg);
+        }
+
+        @Override
+        public void warning(String message) {
+            String prefix = CrazyCore.getProjectPrefix();
+
+            Component msg = AdventureUtils.parse(prefix + "<yellow>" + message + "</yellow>", false);
+
+            Bukkit.getConsoleSender().sendMessage(msg);
+        }
+
+        @Override
+        public void severe(String message) {
+            String prefix = CrazyCore.getProjectPrefix();
+
+            Component msg = AdventureUtils.parse(prefix + "<red>" + message + "</red>", false);
 
             Bukkit.getConsoleSender().sendMessage(msg);
         }
