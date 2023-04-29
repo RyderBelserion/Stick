@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class AdventureUtils {
 
+    private AdventureUtils() {}
+
     /**
      * Parse a message and replace placeholders if need be.
      *

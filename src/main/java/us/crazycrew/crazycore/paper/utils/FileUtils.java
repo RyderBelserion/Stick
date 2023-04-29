@@ -17,6 +17,8 @@ import java.util.zip.ZipFile;
  */
 public class FileUtils {
 
+    private FileUtils() {}
+
     /**
      * Extracts files from inside the .jar into an output
      *
