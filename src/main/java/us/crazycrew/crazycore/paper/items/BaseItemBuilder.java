@@ -30,7 +30,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.util.Consumer;
-import us.crazycrew.crazycore.paper.utils.ItemChecker;
+import us.crazycrew.crazycore.paper.utils.ItemUtils;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -50,7 +50,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unchecked")
 public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
 
-    private final ItemChecker SKULL_CHECKER = new ItemChecker();
+    private final ItemUtils SKULL_CHECKER = new ItemUtils();
 
     private final GsonComponentSerializer gson = GsonComponentSerializer.gson();
 

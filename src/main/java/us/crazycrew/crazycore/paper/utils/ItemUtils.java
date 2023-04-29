@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Description: Create a skull using url's/base64 or player names.
  */
-public class ItemChecker {
+public class ItemUtils {
 
     private final Material skull = Material.PLAYER_HEAD;
 
