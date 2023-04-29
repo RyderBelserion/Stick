@@ -10,7 +10,6 @@ import java.nio.file.Path;
 public class CrazyCore {
 
     private final FileHandler fileHandler;
-    private final Path path;
     private final String projectName;
 
     private static String projectPrefix;
@@ -22,10 +21,9 @@ public class CrazyCore {
      */
     public CrazyCore(Path projectPath, String projectName) {
         this.projectName = projectName;
-        this.path = projectPath;
 
         // Create directory.
-        File file = path.toFile();
+        File file = projectPath.toFile();
         file.mkdir();
 
         fileHandler = new FileHandler();
@@ -38,6 +36,13 @@ public class CrazyCore {
      */
     public void setPrefix(String value) {
         projectPrefix = value;
+    }
+
+    /**
+     * @return the project name
+     */
+    public String getProjectName() {
+        return this.projectName;
     }
 
     /**
