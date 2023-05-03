@@ -69,7 +69,7 @@ public class FileHandler extends FileManager {
 
     @Override
     public File getFile(FileExtension fileExtension) {
-        return fileExtension.getFilePath().toFile();
+        return fileExtension.getFile();
     }
 
     /**
