@@ -38,13 +38,17 @@ public class JsonManager {
      * Load the json file or save it if just created.
      */
     public void load() {
-        try (InputStreamReader reader = new InputStreamReader(new FileInputStream(this.file), StandardCharsets.UTF_8)) {
+        try {
             if (this.file.createNewFile()) {
                 save();
 
                 return;
             }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
 
+        try (InputStreamReader reader = new InputStreamReader(new FileInputStream(this.file), StandardCharsets.UTF_8)) {
             this.gson.fromJson(reader, this.fileExtension.getClass());
         } catch (Exception exception) {
             exception.printStackTrace();
