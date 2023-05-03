@@ -1,6 +1,8 @@
 package us.crazycrew.crazycore.paper.files;
 
 import us.crazycrew.crazycore.paper.files.enums.FileType;
+
+import java.io.File;
 import java.nio.file.Path;
 
 /**
@@ -60,6 +62,10 @@ public abstract class FileExtension {
      */
     public String getFileName() {
         return this.fileName;
+    }
+
+    public File getFile() {
+        return new File(this.filePath.toFile(), this.fileName);
     }
 
     /**

@@ -27,7 +27,7 @@ public class JsonManager {
     public JsonManager(FileExtension fileExtension) {
         this.fileExtension = fileExtension;
 
-        this.file = this.fileExtension.getFilePath().toFile();
+        this.file = this.fileExtension.getFile();
 
         GsonBuilder gsonBuilder = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithModifiers(Modifier.TRANSIENT).excludeFieldsWithoutExposeAnnotation();
 
