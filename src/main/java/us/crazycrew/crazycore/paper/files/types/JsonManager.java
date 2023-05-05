@@ -2,8 +2,8 @@ package us.crazycrew.crazycore.paper.files.types;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.bukkit.Bukkit;
 import us.crazycrew.crazycore.paper.files.FileExtension;
-
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
