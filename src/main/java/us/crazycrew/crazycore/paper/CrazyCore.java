@@ -11,6 +11,7 @@ public class CrazyCore {
 
     private final FileHandler fileHandler;
     private final String projectName;
+    private final Path path;
 
     private static String projectPrefix;
 
@@ -23,7 +24,9 @@ public class CrazyCore {
         this.projectName = projectName;
 
         // Create directory.
-        File file = projectPath.toFile();
+        this.path = projectPath;
+
+        File file = this.path.toFile();
         file.mkdir();
 
         fileHandler = new FileHandler();
@@ -43,6 +46,13 @@ public class CrazyCore {
      */
     public String getProjectName() {
         return this.projectName;
+    }
+
+    /**
+     * @return the project path.
+     */
+    public Path getPath() {
+        return this.path;
     }
 
     /**
