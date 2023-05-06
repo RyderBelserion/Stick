@@ -2,7 +2,9 @@ package us.crazycrew.crazycore.paper.files.types;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.bukkit.Location;
 import us.crazycrew.crazycore.paper.files.FileExtension;
+import us.crazycrew.crazycore.paper.files.types.adapters.LocationTypeAdapter;
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
@@ -28,7 +30,7 @@ public class JsonManager {
 
         this.file = this.fileExtension.getFile();
 
-        GsonBuilder gsonBuilder = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithModifiers(Modifier.TRANSIENT).excludeFieldsWithoutExposeAnnotation();
+        GsonBuilder gsonBuilder = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithModifiers(Modifier.TRANSIENT).excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Location.class, new LocationTypeAdapter());
 
         this.gson = this.fileExtension.isData() ? gsonBuilder.create() : gsonBuilder.setPrettyPrinting().create();
     }
