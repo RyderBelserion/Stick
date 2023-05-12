@@ -7,6 +7,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "CrazyCore"
+rootProject.name = "Estel"
 
 include("common")
