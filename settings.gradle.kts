@@ -7,6 +7,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Estel"
+rootProject.name = "Stick"
 
 include("common")
