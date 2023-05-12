@@ -30,7 +30,10 @@ public class JsonManager {
 
         this.file = this.fileExtension.getFile();
 
-        GsonBuilder gsonBuilder = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithModifiers(Modifier.TRANSIENT).excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Location.class, new LocationTypeAdapter());
+        GsonBuilder gsonBuilder = new GsonBuilder().disableHtmlEscaping()
+                .excludeFieldsWithModifiers(Modifier.TRANSIENT)
+                .excludeFieldsWithoutExposeAnnotation()
+                .registerTypeAdapter(Location.class, new LocationTypeAdapter());
 
         this.gson = this.fileExtension.isData() ? gsonBuilder.create() : gsonBuilder.setPrettyPrinting().create();
     }

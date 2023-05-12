@@ -1,41 +1,51 @@
 package us.crazycrew.crazycore.paper.files.types.adapters;
 
 import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import java.lang.reflect.Type;
+import java.io.IOException;
 
-public class LocationTypeAdapter implements JsonSerializer<Location>, JsonDeserializer<Location> {
+public class LocationTypeAdapter extends TypeAdapter<Location> {
 
     @Override
-    public JsonElement serialize(Location location, Type type, JsonSerializationContext context) {
-        JsonObject jsonObject = new JsonObject();
-
-        try {
-            jsonObject.add("x", new JsonPrimitive(location.getX()));
-            jsonObject.add("y", new JsonPrimitive(location.getY()));
-            jsonObject.add("z", new JsonPrimitive(location.getZ()));
-            jsonObject.add("yaw", new JsonPrimitive(location.getYaw()));
-            jsonObject.add("pitch", new JsonPrimitive(location.getPitch()));
-            jsonObject.add("world", new JsonPrimitive(location.getWorld().getName()));
-        } catch (Exception exception) {
-            exception.printStackTrace();
-
-            return jsonObject;
-        }
-
-        return null;
+    public void write(JsonWriter out, Location location) throws IOException {
+        out.beginObject();
+        out.name("world").value(location.getWorld().getName());
+        out.name("x").value(location.getX());
+        out.name("y").value(location.getY());
+        out.name("z").value(location.getZ());
+        out.name("yaw").value(location.getYaw());
+        out.name("pitch").value(location.getPitch());
+        out.endObject();
     }
 
     @Override
-    public Location deserialize(JsonElement element, Type type, JsonDeserializationContext context) throws JsonParseException {
-        JsonObject jsonObject = element.getAsJsonObject();
+    public Location read(JsonReader reader) throws IOException {
+        reader.beginObject();
 
-        try {
-            return new Location(Bukkit.getWorld(jsonObject.get("world").getAsString()), jsonObject.get("x").getAsDouble(), jsonObject.get("y").getAsDouble(), jsonObject.get("z").getAsDouble(), jsonObject.get("yaw").getAsFloat(), jsonObject.get("pitch").getAsFloat());
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return null;
+        String worldName = null;
+        double x = 0, y = 0, z = 0;
+        float yaw = 0, pitch = 0;
+
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            
+            switch (name) {
+                case "world" -> worldName = reader.nextString();
+                case "x" -> x = reader.nextDouble();
+                case "y" -> y = reader.nextDouble();
+                case "z" -> z = reader.nextDouble();
+                case "yaw" -> yaw = (float) reader.nextDouble();
+                case "pitch" -> pitch = (float) reader.nextDouble();
+                default -> reader.skipValue();
+            }
         }
+
+        reader.endObject();
+
+        assert worldName != null;
+        return new Location(Bukkit.getWorld(worldName), x, y, z, yaw, pitch);
     }
 }
