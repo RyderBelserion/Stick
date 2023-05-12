@@ -7,7 +7,7 @@ import java.nio.file.Path;
 /**
  * Description: A paper manager for plugins to create an instance of.
  */
-public class CrazyCore {
+public class Estel {
 
     private final FileHandler fileHandler;
     private final String projectName;
@@ -20,7 +20,7 @@ public class CrazyCore {
      *
      * @param projectPath the project path
      */
-    public CrazyCore(Path projectPath, String projectName) {
+    public Estel(Path projectPath, String projectName) {
         this.projectName = projectName;
 
         // Create directory.

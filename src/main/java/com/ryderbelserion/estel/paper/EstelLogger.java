@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-public class CrazyLogger {
+public class EstelLogger {
 
     private static InternalLogger InternalLogger;
 
@@ -99,14 +99,14 @@ public class CrazyLogger {
          */
         @Override
         public void info(String message) {
-            Component msg = AdventureUtils.parse(CrazyCore.getProjectPrefix() + message, false);
+            Component msg = AdventureUtils.parse(Estel.getProjectPrefix() + message, false);
 
             Bukkit.getConsoleSender().sendMessage(msg);
         }
 
         @Override
         public void warning(String message) {
-            String prefix = CrazyCore.getProjectPrefix();
+            String prefix = Estel.getProjectPrefix();
 
             Component msg = AdventureUtils.parse(prefix + "<yellow>" + message + "</yellow>", false);
 
@@ -115,7 +115,7 @@ public class CrazyLogger {
 
         @Override
         public void severe(String message) {
-            String prefix = CrazyCore.getProjectPrefix();
+            String prefix = Estel.getProjectPrefix();
 
             Component msg = AdventureUtils.parse(prefix + "<red>" + message + "</red>", false);
 
