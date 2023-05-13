@@ -1,4 +1,4 @@
-package com.ryderbelserion.stick.common.storage.enums;
+package com.ryderbelserion.stick.paper.storage.enums;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package com.ryderbelserion.stick.common.storage.types.sql;
+package com.ryderbelserion.stick.paper.storage.types.sql;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public interface ConnectionManager {
@@ -8,6 +9,6 @@ public interface ConnectionManager {
 
     void shutdown() throws SQLException;
 
-    //Connection getConnection() throws SQLException;
+    Connection getConnection() throws SQLException;
 
 }

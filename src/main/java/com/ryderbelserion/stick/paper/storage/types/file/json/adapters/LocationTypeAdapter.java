@@ -1,4 +1,4 @@
-package com.ryderbelserion.stick.paper.storage.json.adapters;
+package com.ryderbelserion.stick.paper.storage.types.file.json.adapters;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

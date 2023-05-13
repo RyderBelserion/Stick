@@ -1,4 +1,4 @@
-package com.ryderbelserion.stick.common.storage;
+package com.ryderbelserion.stick.paper.storage;
 
 import java.io.File;
 

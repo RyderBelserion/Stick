@@ -17,7 +17,7 @@ repositories {
 dependencies {
     paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
 
-    api(project(":common"))
+    implementation("com.zaxxer:HikariCP:5.0.1")
 
     //compileOnly("dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT")
 }
@@ -37,6 +37,10 @@ tasks {
         if (!file.exists()) file.mkdirs()
 
         outputJar.set(layout.buildDirectory.file("$file/${rootProject.name}-${rootProject.version}.jar"))
+    }
+
+    shadowJar {
+        exclude("**/META-INF/**")
     }
 
     compileJava {

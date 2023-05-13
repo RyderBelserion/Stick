@@ -1,4 +1,4 @@
-package com.ryderbelserion.stick.common.utils;
+package com.ryderbelserion.stick.paper.utils;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;

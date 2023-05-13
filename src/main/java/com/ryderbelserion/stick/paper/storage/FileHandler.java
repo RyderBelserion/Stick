@@ -1,9 +1,7 @@
 package com.ryderbelserion.stick.paper.storage;
 
-import com.ryderbelserion.stick.common.storage.FileExtension;
-import com.ryderbelserion.stick.common.storage.FileManager;
-import com.ryderbelserion.stick.common.utils.FileUtils;
-import com.ryderbelserion.stick.paper.storage.json.JsonLoader;
+import com.ryderbelserion.stick.paper.utils.FileUtils;
+import com.ryderbelserion.stick.paper.storage.types.file.json.JsonLoader;
 import java.io.File;
 import java.nio.file.Path;
 

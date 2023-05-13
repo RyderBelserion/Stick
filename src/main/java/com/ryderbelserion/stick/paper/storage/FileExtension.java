@@ -1,6 +1,7 @@
-package com.ryderbelserion.stick.common.storage;
+package com.ryderbelserion.stick.paper.storage;
 
-import com.ryderbelserion.stick.common.storage.enums.StorageType;
+import com.ryderbelserion.stick.paper.storage.enums.StorageType;
+
 import java.io.File;
 import java.nio.file.Path;
 
@@ -10,10 +11,10 @@ public abstract class FileExtension {
     private final Path path;
     private final StorageType type;
 
-    public FileExtension(Path path, StorageType type) {
+    public FileExtension(String name, Path path, StorageType type) {
         this.path = path;
 
-        this.name = path.toFile().getName();
+        this.name = name;
 
         this.type = type;
     }

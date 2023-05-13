@@ -1,10 +1,10 @@
-package com.ryderbelserion.stick.paper.storage.json;
+package com.ryderbelserion.stick.paper.storage.types.file.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.ryderbelserion.stick.common.storage.FileExtension;
-import com.ryderbelserion.stick.common.storage.types.file.FileLoader;
-import com.ryderbelserion.stick.paper.storage.json.adapters.LocationTypeAdapter;
+import com.ryderbelserion.stick.paper.storage.FileExtension;
+import com.ryderbelserion.stick.paper.storage.types.file.FileLoader;
+import com.ryderbelserion.stick.paper.storage.types.file.json.adapters.LocationTypeAdapter;
 import org.bukkit.Location;
 import java.io.*;
 import java.lang.reflect.Modifier;
