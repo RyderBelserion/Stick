@@ -6,4 +6,6 @@ public interface FileLoader {
 
     void save();
 
+    String getImplName();
+
 }

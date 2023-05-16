@@ -3,6 +3,7 @@ package com.ryderbelserion.stick.paper.storage.types.file.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ryderbelserion.stick.paper.storage.FileExtension;
+import com.ryderbelserion.stick.paper.storage.enums.StorageType;
 import com.ryderbelserion.stick.paper.storage.types.file.FileLoader;
 import com.ryderbelserion.stick.paper.storage.types.file.json.adapters.LocationTypeAdapter;
 import org.bukkit.Location;
@@ -59,6 +60,11 @@ public class JsonLoader implements FileLoader {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    @Override
+    public String getImplName() {
+        return StorageType.JSON.getName();
     }
 
     private void write() throws IOException {

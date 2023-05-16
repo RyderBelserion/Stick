@@ -1,13 +1,17 @@
 package com.ryderbelserion.stick.paper.storage;
 
+import com.ryderbelserion.stick.paper.storage.types.sql.file.SqliteLoader;
 import com.ryderbelserion.stick.paper.utils.FileUtils;
 import com.ryderbelserion.stick.paper.storage.types.file.json.JsonLoader;
+import org.bukkit.Bukkit;
 import java.io.File;
 import java.nio.file.Path;
+import java.sql.SQLException;
 
 public class FileHandler implements FileManager {
 
     private JsonLoader jsonLoader;
+    private SqliteLoader sqliteLoader;
 
     @Override
     public void addFile(FileExtension fileExtension) {
@@ -18,7 +22,15 @@ public class FileHandler implements FileManager {
             }
 
             case SQLITE -> {
+                this.sqliteLoader = new SqliteLoader(fileExtension.getName(), fileExtension.getPath());
 
+                if (this.sqliteLoader.getConnection() != null) {
+                    try {
+                        Bukkit.getLogger().warning(String.valueOf(this.sqliteLoader.getConnection().isClosed()));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             default -> throw new IllegalStateException("Unexpected value: " + fileExtension.getType());
@@ -34,7 +46,7 @@ public class FileHandler implements FileManager {
             }
 
             case SQLITE -> {
-
+                this.sqliteLoader.shutdown();
             }
 
             default -> throw new IllegalStateException("Unexpected value: " + fileExtension.getType());

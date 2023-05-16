@@ -1,34 +1,38 @@
 package com.ryderbelserion.stick.paper.storage.types.sql.file;
 
-import java.lang.reflect.Constructor;
+import com.ryderbelserion.stick.paper.storage.enums.StorageType;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Properties;
 
 public class SqliteLoader extends FlatFileLoader {
 
-    private Constructor<?> connectionBuilder;
+    private Connection connection;
 
-    public SqliteLoader(Path file) {
-        super(file);
+    public SqliteLoader(String name, Path path) {
+        super(name, path);
     }
 
     @Override
     public String getImplName() {
-        return "SQLite";
+        return StorageType.SQLITE.getName();
     }
 
     @Override
-    protected Connection createConnection(Path file) throws SQLException {
-        try {
-            return (Connection) this.connectionBuilder.newInstance("jdbc:sqlite:" + file.toString(), file.toString(), new Properties());
-        } catch (ReflectiveOperationException exception) {
-            if (exception.getCause() instanceof SQLException) {
-                throw (SQLException) exception.getCause();
-            }
+    protected Connection createConnection(String name, Path path) {
+        File file = new File(path.toFile(), name);
 
-            throw new RuntimeException(exception);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+        String url = "jdbc:sqlite:" + file.getPath();
+
+        return null;
     }
 }

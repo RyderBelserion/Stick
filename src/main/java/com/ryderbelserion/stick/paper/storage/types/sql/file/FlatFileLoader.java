@@ -1,34 +1,56 @@
 package com.ryderbelserion.stick.paper.storage.types.sql.file;
 
 import com.ryderbelserion.stick.paper.storage.types.sql.ConnectionManager;
+import java.io.File;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 abstract class FlatFileLoader implements ConnectionManager {
 
-    protected abstract Connection createConnection(Path file) throws SQLException;
+    protected abstract Connection createConnection(String name, Path path) throws SQLException;
 
     private Connection connection;
-    private final Path file;
+    private final String name;
+    private final Path path;
 
-    FlatFileLoader(Path file) {
-        this.file = file;
+    FlatFileLoader(String name, Path path) {
+        this.name = name;
+
+        this.path = path;
     }
 
     @Override
-    public synchronized Connection getConnection() throws SQLException {
-        if (this.connection == null || this.connection.isClosed()) this.connection = createConnection(this.file);
+    public synchronized Connection getConnection() {
+        try {
+            if (this.connection == null || this.connection.isClosed()) this.connection = createConnection(this.name, this.path);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return this.connection;
     }
 
     @Override
-    public void shutdown() throws SQLException {
-        if (this.connection != null) this.connection.close();
+    public void shutdown() {
+        if (this.connection != null) {
+            try {
+                this.connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    protected Path getFile() {
-        return this.file;
+    protected File getFile() {
+        return new File(this.path.toFile(), this.name);
+    }
+
+    protected String getName() {
+        return this.name;
+    }
+
+    protected Path getPath() {
+        return this.path;
     }
 }
