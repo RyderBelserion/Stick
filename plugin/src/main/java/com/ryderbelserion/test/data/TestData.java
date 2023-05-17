@@ -1,8 +1,8 @@
-package com.ryderbelserion.stick.paper.plugin.data;
+package com.ryderbelserion.test.data;
 
-import com.ryderbelserion.stick.paper.plugin.TestPlugin;
 import com.ryderbelserion.stick.paper.storage.FileExtension;
 import com.ryderbelserion.stick.paper.storage.enums.StorageType;
+import com.ryderbelserion.test.TestPlugin;
 import java.nio.file.Path;
 
 public class TestData extends FileExtension {

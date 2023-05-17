@@ -1,4 +1,4 @@
-package com.ryderbelserion.stick.paper.plugin;
+package com.ryderbelserion.test;
 
 import com.ryderbelserion.stick.paper.Stick;
 import com.ryderbelserion.stick.paper.StickLogger;

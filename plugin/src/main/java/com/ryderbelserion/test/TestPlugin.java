@@ -1,8 +1,8 @@
-package com.ryderbelserion.stick.paper.plugin;
+package com.ryderbelserion.test;
 
 import com.ryderbelserion.stick.paper.Stick;
 import com.ryderbelserion.stick.paper.StickLogger;
-import com.ryderbelserion.stick.paper.plugin.data.TestData;
+import com.ryderbelserion.test.data.TestData;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import java.util.logging.Logger;

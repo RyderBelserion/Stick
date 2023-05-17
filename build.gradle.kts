@@ -4,8 +4,6 @@ plugins {
 
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.papermc.paperweight.userdev") version "1.5.4"
-
-    id("xyz.jpenilla.run-paper") version "2.0.1"
 }
 
 repositories {
@@ -13,7 +11,7 @@ repositories {
 
     maven("https://jitpack.io")
 
-    maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.papermc.io/repository/maven-public")
 }
 
 dependencies {
@@ -43,10 +41,6 @@ tasks {
 
     shadowJar {
         exclude("**/META-INF/**")
-    }
-
-    runServer {
-        minecraftVersion("1.19.4")
     }
 
     compileJava {
