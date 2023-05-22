@@ -6,6 +6,7 @@ public enum StorageType {
 
     // Config style databases
     JSON("JSON", "json"),
+    YAML("YAML", "yaml"),
 
     // Local databases
     SQLITE("SQLite", "sqlite");
