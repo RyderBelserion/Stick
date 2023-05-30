@@ -17,34 +17,24 @@ public class JsonLoader implements FileLoader {
 
     private final File file;
 
-    private final GsonBuilder gsonBuilder;
-    private Gson gson;
+    private final Gson gson;
 
     public JsonLoader(FileExtension fileExtension) {
         this.fileExtension = fileExtension;
 
         this.file = this.fileExtension.getFile();
 
-        //if (!this.fileExtension.getAdapters().isEmpty()) {
-        //    Map.Entry<Class<?>, Types> types = this.fileExtension.getAdapters().entrySet().iterator().next();
-
-        //    if (types.getKey() == null) return;
-
-        //    gsonBuilder.registerTypeAdapter(types.getKey(), types.getValue());
-        //}
-
-        this.gsonBuilder = new GsonBuilder().disableHtmlEscaping()
+        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping()
                 .excludeFieldsWithModifiers(Modifier.TRANSIENT)
                 .excludeFieldsWithoutExposeAnnotation()
                 .registerTypeAdapter(Location.class, new LocationTypeAdapter());
-    }
 
-    public GsonBuilder getGson() {
-        return this.gsonBuilder;
-    }
+        if (this.fileExtension.getGsonBuilder() != null) {
+            this.gson = this.fileExtension.getGsonBuilder().create();
+            return;
+        }
 
-    public void buildGson() {
-        this.gson = this.gsonBuilder.create();
+        this.gson = builder.create();
     }
 
     @Override
