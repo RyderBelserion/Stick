@@ -2,6 +2,7 @@ package com.ryderbelserion.stick.paper.storage.types.file.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mojang.datafixers.optics.Adapter;
 import com.ryderbelserion.stick.paper.storage.FileExtension;
 import com.ryderbelserion.stick.paper.storage.enums.StorageType;
 import com.ryderbelserion.stick.paper.storage.types.file.FileLoader;
@@ -10,31 +11,35 @@ import org.bukkit.Location;
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
-public class JsonLoader implements FileLoader {
+public class JsonLoader<Types> implements FileLoader {
 
-    private final FileExtension fileExtension;
+    private final FileExtension<Types> fileExtension;
 
     private final File file;
 
-    private final GsonBuilder gsonBuilder;
     private Gson gson;
 
-    public JsonLoader(FileExtension fileExtension) {
+    public JsonLoader(FileExtension<Types> fileExtension) {
         this.fileExtension = fileExtension;
 
         this.file = this.fileExtension.getFile();
 
-        this.gsonBuilder = new GsonBuilder().disableHtmlEscaping()
+        GsonBuilder gsonBuilder = new GsonBuilder().disableHtmlEscaping()
                 .excludeFieldsWithModifiers(Modifier.TRANSIENT)
                 .excludeFieldsWithoutExposeAnnotation()
                 .registerTypeAdapter(Location.class, new LocationTypeAdapter());
-    }
 
-    public <T> void adapters(Class<?> classObject, T... adapter) {
-        this.gsonBuilder.registerTypeAdapter(classObject, adapter);
+        if (!this.fileExtension.getAdapters().isEmpty()) {
+            Map.Entry<Class<?>, Types> types = this.fileExtension.getAdapters().entrySet().iterator().next();
 
-        this.gson = this.gsonBuilder.create();
+            if (types.getKey() == null) return;
+
+            gsonBuilder.registerTypeAdapter(types.getKey(), types.getValue());
+        }
+
+        this.gson = gsonBuilder.create();
     }
 
     @Override
