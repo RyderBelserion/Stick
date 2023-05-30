@@ -2,7 +2,6 @@ package com.ryderbelserion.stick.paper.storage.types.file.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mojang.datafixers.optics.Adapter;
 import com.ryderbelserion.stick.paper.storage.FileExtension;
 import com.ryderbelserion.stick.paper.storage.enums.StorageType;
 import com.ryderbelserion.stick.paper.storage.types.file.FileLoader;
@@ -11,35 +10,41 @@ import org.bukkit.Location;
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
-public class JsonLoader<Types> implements FileLoader {
+public class JsonLoader implements FileLoader {
 
-    private final FileExtension<Types> fileExtension;
+    private final FileExtension fileExtension;
 
     private final File file;
 
+    private final GsonBuilder gsonBuilder;
     private Gson gson;
 
-    public JsonLoader(FileExtension<Types> fileExtension) {
+    public JsonLoader(FileExtension fileExtension) {
         this.fileExtension = fileExtension;
 
         this.file = this.fileExtension.getFile();
 
-        GsonBuilder gsonBuilder = new GsonBuilder().disableHtmlEscaping()
+        //if (!this.fileExtension.getAdapters().isEmpty()) {
+        //    Map.Entry<Class<?>, Types> types = this.fileExtension.getAdapters().entrySet().iterator().next();
+
+        //    if (types.getKey() == null) return;
+
+        //    gsonBuilder.registerTypeAdapter(types.getKey(), types.getValue());
+        //}
+
+        this.gsonBuilder = new GsonBuilder().disableHtmlEscaping()
                 .excludeFieldsWithModifiers(Modifier.TRANSIENT)
                 .excludeFieldsWithoutExposeAnnotation()
                 .registerTypeAdapter(Location.class, new LocationTypeAdapter());
+    }
 
-        if (!this.fileExtension.getAdapters().isEmpty()) {
-            Map.Entry<Class<?>, Types> types = this.fileExtension.getAdapters().entrySet().iterator().next();
+    public GsonBuilder getGson() {
+        return this.gsonBuilder;
+    }
 
-            if (types.getKey() == null) return;
-
-            gsonBuilder.registerTypeAdapter(types.getKey(), types.getValue());
-        }
-
-        this.gson = gsonBuilder.create();
+    public void buildGson() {
+        this.gson = this.gsonBuilder.create();
     }
 
     @Override
