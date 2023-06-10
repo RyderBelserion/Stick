@@ -3,23 +3,14 @@ plugins {
     `maven-publish`
 
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.papermc.paperweight.userdev") version "1.5.4"
 }
 
 repositories {
     mavenCentral()
-
-    maven("https://jitpack.io")
-
-    maven("https://repo.papermc.io/repository/maven-public")
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
 
-    implementation("com.zaxxer:HikariCP:5.0.1")
-
-    //compileOnly("dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT")
 }
 
 java {
@@ -31,29 +22,12 @@ tasks {
         dependsOn(reobfJar)
     }
 
-    reobfJar {
-        val file = File("$rootDir/jars")
-
-        if (!file.exists()) file.mkdirs()
-
-        outputJar.set(layout.buildDirectory.file("$file/${rootProject.name}-${rootProject.version}.jar"))
-    }
-
     shadowJar {
         exclude("**/META-INF/**")
     }
 
     compileJava {
-        options.encoding = Charsets.UTF_8.name()
         options.release.set(17)
-    }
-
-    javadoc {
-        options.encoding = Charsets.UTF_8.name()
-    }
-
-    processResources {
-        filteringCharset = Charsets.UTF_8.name()
     }
 }
 

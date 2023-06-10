@@ -2,9 +2,9 @@ plugins {
     `java-library`
 
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.papermc.paperweight.userdev") version "1.5.4"
+    id("io.papermc.paperweight.userdev") version "1.5.45"
 
-    id("xyz.jpenilla.run-paper") version "2.0.1"
+    id("xyz.jpenilla.run-paper") version "2.1.0"
 }
 
 repositories {
@@ -12,17 +12,15 @@ repositories {
 
     maven("https://jitpack.io")
 
-    maven("https://repo.crazycrew.us/api")
+    //maven("https://repo.crazycrew.us/api")
 
     maven("https://repo.papermc.io/repository/maven-public")
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20-R0.1-SNAPSHOT")
 
-    implementation("com.ryderbelserion.stick:stick-api:2.1.0.14")
-
-    //compileOnly("dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT")
+    //implementation("com.ryderbelserion.stick:stick-api:2.1.0.14")
 }
 
 java {
@@ -39,7 +37,7 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.19.4")
+        minecraftVersion("1.20")
     }
 
     compileJava {
