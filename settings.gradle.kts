@@ -7,4 +7,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "CrazyCore"
+rootProject.name = "Stick"
+
+include("paper")
