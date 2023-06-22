@@ -18,15 +18,10 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BannerMeta;
-import org.bukkit.inventory.meta.BlockStateMeta;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.FireworkEffectMeta;
-import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.inventory.meta.*;
+import org.bukkit.inventory.meta.trim.ArmorTrim;
+import org.bukkit.inventory.meta.trim.TrimMaterial;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.util.Consumer;
@@ -81,6 +76,9 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
 
     // Leather.
     private boolean isLeather;
+    private boolean isArmor;
+    private TrimMaterial trimMaterial;
+    private TrimPattern trimPattern;
     private Color armorColor;
 
     // Banners.
@@ -156,6 +154,10 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
             case FIREWORK_ROCKET -> this.isFirework = true;
             case FIREWORK_STAR -> this.isFireworkStar = true;
         }
+
+        String name = this.material.name();
+
+        this.isArmor = name.endsWith("_HELMET") || name.endsWith("_CHESTPLATE") || name.endsWith("_LEGGINGS") || name.endsWith("_BOOTS");
 
         // Accounts for all banners.
         if (this.material.name().contains("BANNER")) this.isBanner = true;
@@ -422,6 +424,8 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
 
         if (matchedMaterial != null) this.material = matchedMaterial;
 
+        if (this.isArmor) ((ArmorMeta) itemMeta).setTrim(new ArmorTrim(this.trimMaterial, this.trimPattern));
+
         this.itemStack.setType(this.material);
 
         setItemMeta(this.itemStack.getItemMeta());
@@ -444,6 +448,13 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
      */
     public Base setGlow(boolean isGlowing) {
         this.isGlowing = isGlowing;
+        return (Base) this;
+    }
+
+    public Base setTrim(TrimMaterial trimMaterial, TrimPattern trimPattern) {
+        this.trimMaterial = trimMaterial;
+        this.trimPattern = trimPattern;
+
         return (Base) this;
     }
 
