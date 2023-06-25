@@ -1,22 +1,18 @@
 plugins {
     id("paper-plugin")
+
+    id("publish-task")
 }
 
 dependencies {
-    api(project(":core"))
+    api("com.ryderbelserion.stick", "stick-core", "2.2.1-snapshot")
 }
 
 tasks {
-    reobfJar {
-        val file = File("$rootDir/jars")
-
-        if (!file.exists()) file.mkdirs()
-
-        outputJar.set(layout.buildDirectory.file("$file/${rootProject.name}-${rootProject.version}.jar"))
-    }
-
     shadowJar {
         fun reloc(pkg: String) = relocate(pkg, "${rootProject.group}.deps.$pkg")
+
+        archiveBaseName.set("${rootProject.name.lowercase()}-${project.name}")
 
         exclude("**/META-INF/**")
     }

@@ -1,6 +1,7 @@
 package com.ryderbelserion.stick.core.storage;
 
 import com.ryderbelserion.stick.core.storage.types.file.json.JsonLoader;
+import com.ryderbelserion.stick.core.storage.types.file.yaml.YamlLoader;
 import com.ryderbelserion.stick.core.storage.types.sql.file.SqliteLoader;
 import com.ryderbelserion.stick.core.utils.FileUtils;
 import java.io.File;
@@ -9,6 +10,7 @@ import java.nio.file.Path;
 public class FileHandler implements FileManager {
 
     private JsonLoader jsonLoader;
+    private YamlLoader yamlLoader;
     private SqliteLoader sqliteLoader;
 
     @Override
@@ -18,6 +20,11 @@ public class FileHandler implements FileManager {
             case JSON -> {
                 this.jsonLoader = new JsonLoader(fileExtension);
                 this.jsonLoader.load();
+            }
+
+            case YAML -> {
+                this.yamlLoader = new YamlLoader(fileExtension);
+                this.yamlLoader.load();
             }
 
             case SQLITE -> {
@@ -44,6 +51,11 @@ public class FileHandler implements FileManager {
                 this.jsonLoader.save();
             }
 
+            case YAML -> {
+                this.yamlLoader = new YamlLoader(fileExtension);
+                this.yamlLoader.save();
+            }
+
             case SQLITE -> {
                 //this.sqliteLoader.shutdown();
             }
@@ -64,7 +76,7 @@ public class FileHandler implements FileManager {
         return fileExtension.getFile();
     }
 
-    private void extract(String value, Path directory) {
+    public void extract(String value, Path directory) {
         File newDirectory = new File(directory + value);
 
         newDirectory.mkdir();

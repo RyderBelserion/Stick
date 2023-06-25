@@ -1,7 +1,8 @@
 .gradle
 .idea
 
-build
+buildSrc/.gradle
+buildSrc/build
 
-run
-!run/eula.txt
+paper/.gradle
+paper/build

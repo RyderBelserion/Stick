@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.ryderbelserion.stick.core.storage.FileExtension;
 import com.ryderbelserion.stick.core.storage.enums.StorageType;
 import com.ryderbelserion.stick.core.storage.types.file.FileLoader;
-
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;

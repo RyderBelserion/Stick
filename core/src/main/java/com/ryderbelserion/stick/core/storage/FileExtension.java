@@ -1,6 +1,7 @@
 package com.ryderbelserion.stick.core.storage;
 
 import com.google.gson.GsonBuilder;
+import com.ryderbelserion.stick.core.StickCore;
 import com.ryderbelserion.stick.core.storage.enums.StorageType;
 import java.io.File;
 import java.nio.file.Path;
@@ -13,8 +14,8 @@ public abstract class FileExtension {
 
     private GsonBuilder builder;
 
-    public FileExtension(String name, Path path, StorageType type) {
-        this.path = path;
+    public FileExtension(String name, StorageType type) {
+        this.path = StickCore.core().getDirectory();
 
         this.name = name;
 
