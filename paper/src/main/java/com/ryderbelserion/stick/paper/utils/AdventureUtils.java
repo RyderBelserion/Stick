@@ -7,9 +7,6 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Description: A wrapper around MiniMessage/Kyori API
- */
 public class AdventureUtils {
 
     private AdventureUtils() {}

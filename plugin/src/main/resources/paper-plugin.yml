@@ -1,7 +1,0 @@
-name: TestPlugin
-version: '1.0'
-main: com.ryderbelserion.test.TestPlugin
-description: Paper Test Plugin
-api-version: '1.19'
-
-bootstrapper: com.ryderbelserion.test.CrazyStarter

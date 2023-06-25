@@ -9,4 +9,4 @@ pluginManagement {
 
 rootProject.name = "Stick"
 
-include("paper")
+include("paper", "core")

@@ -69,7 +69,7 @@ public class ItemNbt {
 
         if (meta == null) return null;
 
-        meta.getPersistentDataContainer().set(new NamespacedKey(this.plugin, key), PersistentDataType.BYTE, value ? (byte) 1 : 0);
+        meta.getPersistentDataContainer().set(new NamespacedKey(this.plugin, key), PersistentDataType.BOOLEAN, value);
         itemStack.setItemMeta(meta);
 
         return itemStack;

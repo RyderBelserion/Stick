@@ -3,7 +3,6 @@ package com.ryderbelserion.stick.paper;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import com.ryderbelserion.stick.paper.utils.AdventureUtils;
-
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
