@@ -5,7 +5,11 @@ plugins {
 }
 
 dependencies {
-    api("com.ryderbelserion.stick", "stick-core", "2.2.1-snapshot")
+    api("com.ryderbelserion.stick", "stick-core", "2.2.1-snapshot") {
+        exclude("com.google.code.gson", "gson")
+        exclude("me.carleslc.Simple-YAML", "Simple-Yaml")
+        exclude("org.jetbrains", "annotations")
+    }
 }
 
 tasks {

@@ -14,7 +14,7 @@ public class PaperUtils {
     }
 
     public static boolean isSpigot() {
-        return hasClass("org.spigotmc.SpigotConfig");
+        return hasClass("org.spigotmc.SpigotConfig") && !hasClass("io.papermc.paper.configuration.Configuration") || !hasClass("com.destroystokyo.paper.PaperConfig");
     }
 
     public static boolean isPaper() {
