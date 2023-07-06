@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AdventureUtils {
 
-    public static Component parse(@NotNull String message, boolean hasItalics, @NotNull TagResolver.Single... placeholders) {
-        return MiniMessage.miniMessage().deserialize(message, placeholders).decoration(TextDecoration.ITALIC, hasItalics);
+    public static Component parse(@NotNull String message, @NotNull TagResolver.Single... placeholders) {
+        return MiniMessage.miniMessage().deserialize(message, placeholders).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE);
     }
 }

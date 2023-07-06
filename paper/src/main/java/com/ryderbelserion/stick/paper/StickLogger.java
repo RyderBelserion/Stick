@@ -50,7 +50,7 @@ public class StickLogger {
 
         @Override
         public void info(String message) {
-            Component msg = AdventureUtils.parse(Stick.getProjectPrefix() + message, false);
+            Component msg = AdventureUtils.parse(Stick.getProjectPrefix() + message);
 
             Bukkit.getConsoleSender().sendMessage(msg);
         }
@@ -59,7 +59,7 @@ public class StickLogger {
         public void warning(String message) {
             String prefix = Stick.getProjectPrefix();
 
-            Component msg = AdventureUtils.parse(prefix + "<yellow>" + message + "</yellow>", false);
+            Component msg = AdventureUtils.parse(prefix + "<yellow>" + message + "</yellow>");
 
             Bukkit.getConsoleSender().sendMessage(msg);
         }
@@ -68,7 +68,7 @@ public class StickLogger {
         public void severe(String message) {
             String prefix = Stick.getProjectPrefix();
 
-            Component msg = AdventureUtils.parse(prefix + "<red>" + message + "</red>", false);
+            Component msg = AdventureUtils.parse(prefix + "<red>" + message + "</red>");
 
             Bukkit.getConsoleSender().sendMessage(msg);
         }
