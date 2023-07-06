@@ -39,9 +39,6 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-/**
- * Description: A base item builder to build everything we need.
- */
 @SuppressWarnings("unchecked")
 public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
 
@@ -97,9 +94,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
     private boolean hideFlags;
     private boolean isGlowing;
 
-    /**
-     * An empty constructor for when you want to populate options after creation.
-     */
     protected BaseItemBuilder() {
         this.itemStack = null;
         this.itemMeta = null;
@@ -126,11 +120,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         this.isGlowing = false;
     }
 
-    /**
-     * A protected constructor to start off our item-stack process.
-     *
-     * @param itemStack the itemstack to utilize when building
-     */
     protected BaseItemBuilder(ItemStack itemStack) {
         this.itemStack = itemStack;
 
@@ -167,43 +156,19 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         this.itemMeta = itemStack.hasItemMeta() ? itemStack.getItemMeta() : Bukkit.getServer().getItemFactory().getItemMeta(material);
     }
 
-    /**
-     * Set the display name of the item stack.
-     *
-     * @param displayName the display-name
-     */
     private void setDisplayName(Component displayName) {
         this.itemMeta.displayName(displayName);
     }
 
-    /**
-     * Set the display name of the item stack without italics.
-     *
-     * @param displayName the display-name
-     * @param removeItalics whether to keep or remove italics
-     * @return the item builder with updated name
-     */
     public Base setDisplayName(Component displayName, boolean removeItalics) {
         if (removeItalics) { this.itemMeta.displayName(displayName.decoration(TextDecoration.ITALIC, false)); } else setDisplayName(displayName);
         return (Base) this;
     }
 
-    /**
-     * Set lore on an item.
-     *
-     * @param lore The lore to set
-     * @return the item builder with updated lore's
-     */
     public Base setLore(Component ... lore) {
         return setLore(Arrays.asList(lore));
     }
 
-    /**
-     * Set a list of lore to the LORE_FIELD
-     *
-     * @param lore The list to set
-     * @return the item builder with updated lore's
-     */
     public Base setLore(List<Component> lore) {
         List<String> jsonLore = lore.stream().filter(Objects::nonNull).map(this.gson::serialize).toList();
 
@@ -216,12 +181,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return (Base) this;
     }
 
-    /**
-     * Add a line to the current lore of the item.
-     *
-     * @param lore the new line you wish to add
-     * @return the item builder with updated lore
-     */
     public Base addLore(Consumer<List<Component>> lore) {
         List<Component> components;
 
@@ -238,87 +197,41 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return (Base) this;
     }
 
-    /**
-     * Set the amount of the item stack.
-     *
-     * @param amount the amount
-     * @return the item builder with updated amount
-     */
     public Base setAmount(int amount) {
         this.itemStack.setAmount(amount);
         return (Base) this;
     }
 
-    /**
-     * Adds an enchantment to the item.
-     *
-     * @param enchantment the enchantment you wish to add
-     * @param level the level of the enchantment ( Includes unsafe levels )
-     * @param ignoreLevelRestriction whether to ignore level restriction or not
-     * @return the item builder with the updated enchantment
-     */
     public Base addEnchantment(Enchantment enchantment, int level, boolean ignoreLevelRestriction) {
         this.itemMeta.addEnchant(enchantment, level, ignoreLevelRestriction);
         return (Base) this;
     }
 
-    /**
-     * Adds an enchantment to the item.
-     *
-     * @param enchantment The enchantment you wish to add
-     * @return the item builder with the updated enchantment
-     */
     public Base removeEnchantment(Enchantment enchantment) {
         this.itemMeta.removeEnchant(enchantment);
         return (Base) this;
     }
 
-    /**
-     * It will override any and all enchantments used in:
-     * -> addEnchantment Method.
-     *
-     * @param enchantments the enchantments you wish to add
-     * @param ignoreLevelRestriction whether to ignore level restrictions or not
-     * @return the item builder with the updated enchantments
-     */
     public Base setEnchantments(HashMap<Enchantment, Integer> enchantments, boolean ignoreLevelRestriction) {
         enchantments.forEach((enchantment, integer) -> this.itemMeta.addEnchant(enchantment, integer, ignoreLevelRestriction));
         return (Base) this;
     }
 
-    /**
-     * @param patterns the list of Patterns to add
-     * @return the item builder with updated patterns
-     */
     public Base addPatterns(List<String> patterns) {
         patterns.forEach(this::addPatterns);
         return (Base) this;
     }
 
-    /**
-     * @param pattern A pattern to add
-     * @return The ItemBuilder with an updated pattern
-     */
     public Base addPattern(Pattern pattern) {
         this.patterns.add(pattern);
         return (Base) this;
     }
 
-    /**
-     * @param patterns Set a list of Patterns
-     * @return The ItemBuilder with an updated list of patterns
-     */
     public Base setPattern(List<Pattern> patterns) {
         this.patterns = patterns;
         return (Base) this;
     }
 
-    /**
-     * Adds a list of item flags.
-     *
-     * @param flags the list of item flags to add
-     * @return the list of item flags
-     */
     public Base addItemFlags(List<String> flags) {
         flags.forEach(flag -> {
             try {
@@ -333,24 +246,12 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return (Base) this;
     }
 
-    /**
-     * Sets the player texture/player name
-     *
-     * @param texture the texture/player name
-     * @return the item builder
-     */
     public Base setTexture(String texture) {
         this.texture = texture;
 
         return (Base) this;
     }
 
-    /**
-     * Set the type of item and its metadata in the builder.
-     *
-     * @param material the string must be in this form: %Material% or %Material%:%MetaData%
-     * @return the item builder with updated material
-     */
     public Base setValue(String material) {
         if (material == null || material.isEmpty()) {
             Bukkit.getLogger().warning("Material cannot be null or empty, Output: " + material + ".");
@@ -433,19 +334,11 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return (Base) this;
     }
 
-    /**
-     * @param hideFlags hide item flags based on a boolean
-     * @return the item builder with an updated boolean
-     */
     public Base hideFlags(boolean hideFlags) {
         this.hideFlags = hideFlags;
         return (Base) this;
     }
 
-    /**
-     * @param isGlowing sets whether to make an item glow or not
-     * @return the item builder with an updated boolean
-     */
     public Base setGlow(boolean isGlowing) {
         this.isGlowing = isGlowing;
         return (Base) this;
@@ -458,31 +351,15 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return (Base) this;
     }
 
-    /**
-     * @param isDurable whether the item is durable or not
-     * @return the item builder with an updated boolean
-     */
     public Base setDurable(boolean isDurable) {
         this.isDurable = isDurable;
         return (Base) this;
     }
 
-    /**
-     * Set an array of effects.
-     *
-     * @param effects the effects to set
-     * @return the item builder with updated firework effects
-     */
     public Base setEffect(FireworkEffect... effects) {
         return setEffect(Arrays.asList(effects));
     }
 
-    /**
-     * Set a list of firework effects to the fireworks
-     *
-     * @param effects the effects to add
-     * @return the item builder with updated firework effects
-     */
     public Base setEffect(List<FireworkEffect> effects) {
         if (effects.isEmpty()) return (Base) this;
 
@@ -503,12 +380,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return (Base) this;
     }
 
-    /**
-     * Set the power of a firework which increases Flight Time.
-     *
-     * @param power the power value
-     * @return the item builder with updated firework power
-     */
     public Base setPower(int power) {
         if (this.isFirework) {
             FireworkMeta fireworkMeta = (FireworkMeta) this.getItemMeta();
@@ -521,9 +392,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return (Base) this;
     }
 
-    /**
-     * @return the completed itemstack
-     */
     public ItemStack build() {
         if (this.material != Material.AIR) {
             if (this.isHead) {
@@ -579,20 +447,10 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return this.itemStack;
     }
 
-    /**
-     * Add an item flag to the item.
-     *
-     * @param itemFlag the item flag to add
-     */
     private void addItemFlag(ItemFlag itemFlag) {
         this.itemMeta.addItemFlags(itemFlag);
     }
 
-    /**
-     * Set a player texture.
-     *
-     * @param texture the player, base64 or texture
-     */
     private void setPlayerTexture(String texture) {
         this.texture = texture;
 
@@ -611,11 +469,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         setTexture(this.texture, UUID.randomUUID());
     }
 
-    /**
-     * Set the skull owner
-     *
-     * @param player the player the skull will look like
-     */
     private void setOwner(OfflinePlayer player) {
         if (this.SKULL_CHECKER.isPlayerSkull(this.material)) return;
 
@@ -626,9 +479,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         this.setItemMeta(skullMeta);
     }
 
-    /**
-     * Add glow to an item.
-     */
     private void addGlow() {
         if (this.isGlowing) {
             if (this.itemMeta.hasEnchants()) return;
@@ -639,9 +489,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         }
     }
 
-    /**
-     * Expose the skull meta profile field.
-     */
     private void exposeField() {
         if (this.SKULL_CHECKER.isPlayerSkull(this.material)) return;
 
@@ -661,12 +508,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         this.profile = field;
     }
 
-    /**
-     * Checks if an integer is valid.
-     *
-     * @param value The string to check
-     * @return true if it is valid otherwise false
-     */
     private boolean isValidInteger(String value) {
         try {
             Integer.parseInt(value);
@@ -677,12 +518,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return true;
     }
 
-    /**
-     * Get the color from a string.
-     *
-     * @param color the string of the color
-     * @return the color from the string
-     */
     private Color getColor(String color) {
         if (color != null) {
             switch (color.toUpperCase()) {
@@ -748,11 +583,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return null;
     }
 
-    /**
-     * Add patterns to the item.
-     *
-     * @param stringPattern the pattern you wish to add
-     */
     private void addPatterns(String stringPattern) {
         try {
             String[] split = stringPattern.split(":");
@@ -770,12 +600,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         } catch (Exception ignored) {}
     }
 
-    /**
-     * Get the dye color from a string.
-     *
-     * @param color the string of the color
-     * @return the dye color from the string
-     */
     public DyeColor getDyeColor(String color) {
         if (color != null) {
             try {
@@ -791,12 +615,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         return null;
     }
 
-    /**
-     * Set the texture using the game profiles.
-     *
-     * @param texture the texture url, player or base64
-     * @param uuid a random uuid unless a player is supplied
-     */
     private void setTexture(String texture, UUID uuid) {
         if (this.SKULL_CHECKER.isPlayerSkull(this.material)) return;
 
@@ -817,12 +635,6 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
         setItemMeta(skullMeta);
     }
 
-    /**
-     * Convert an url to base64.
-     *
-     * @param url the url to convert
-     * @return the converted url
-     */
     private String convert(String url) {
         URL actualLink;
 
@@ -838,34 +650,18 @@ public class BaseItemBuilder<Base extends BaseItemBuilder<Base>> {
     }
 
     // Protected getters for extended builders.
-    /**
-     * @return the itemstack
-     */
     protected ItemStack getItemStack() {
         return this.itemStack;
     }
 
-    /**
-     * Updates the item stack.
-     *
-     * @param itemStack the itemstack
-     */
     protected void setItemStack(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
-    /**
-     * @return the itemmeta
-     */
     protected ItemMeta getItemMeta() {
         return this.itemMeta;
     }
 
-    /**
-     * Updates the item meta.
-     *
-     * @param itemMeta the itemmeta
-     */
     protected void setItemMeta(ItemMeta itemMeta) {
         this.itemMeta = itemMeta;
     }
