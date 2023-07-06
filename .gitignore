@@ -4,5 +4,7 @@
 buildSrc/.gradle
 buildSrc/build
 
+core/build
+
 paper/.gradle
 paper/build
