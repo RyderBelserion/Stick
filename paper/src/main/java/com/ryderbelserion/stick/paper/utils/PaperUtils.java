@@ -2,8 +2,6 @@ package com.ryderbelserion.stick.paper.utils;
 
 public class PaperUtils {
 
-    private PaperUtils() {}
-
     private static boolean hasClass(String className) {
         try {
             Class.forName(className);
