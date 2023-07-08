@@ -22,14 +22,14 @@ public class JsonLoader implements FileLoader {
 
         this.file = this.fileExtension.getFile();
 
-        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping()
-                .excludeFieldsWithModifiers(Modifier.TRANSIENT)
-                .excludeFieldsWithoutExposeAnnotation();
-
         if (this.fileExtension.getBuilder() != null) {
             this.gson = this.fileExtension.getBuilder().create();
             return;
         }
+
+        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping()
+                .excludeFieldsWithModifiers(Modifier.TRANSIENT)
+                .excludeFieldsWithoutExposeAnnotation();
 
         this.gson = builder.create();
     }
