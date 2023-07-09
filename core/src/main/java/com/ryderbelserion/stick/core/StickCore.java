@@ -1,6 +1,7 @@
 package com.ryderbelserion.stick.core;
 
 import org.jetbrains.annotations.NotNull;
+import java.lang.reflect.Field;
 
 public abstract class StickCore {
 
@@ -13,6 +14,16 @@ public abstract class StickCore {
 
         static @NotNull StickCore api() {
             return Provider.api;
+        }
+    }
+
+    public StickCore() {
+        try {
+            Field api = Provider.class.getDeclaredField("api");
+            api.setAccessible(true);
+            api.set(null, this);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -37,4 +48,5 @@ public abstract class StickCore {
     public abstract String commandNavigationNextButton();
 
     public abstract String commandNavigationBackButton();
+
 }
