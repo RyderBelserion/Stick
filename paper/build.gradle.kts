@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    api("com.ryderbelserion.stick", "stick-core", "2.2.1-snapshot") {
+    api(project(":core")) {
         exclude("com.google.code.gson", "gson")
         exclude("me.carleslc.Simple-YAML", "Simple-Yaml")
         exclude("org.jetbrains", "annotations")
