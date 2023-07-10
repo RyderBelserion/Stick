@@ -1,5 +1,6 @@
 package com.ryderbelserion.stick.paper.commands.sender;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public interface CommandArgs {
@@ -15,5 +16,7 @@ public interface CommandArgs {
     float getArgAsFloat(int index, boolean notifySender, String invalidArg, String placeholder);
 
     Player getArgAsPlayer(int index, boolean notifySender, String invalidArg, String placeholder);
+
+    OfflinePlayer getArgAsOfflinePlayer(int index, boolean notifySender, String invalidArg, String placeholder);
 
 }

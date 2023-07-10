@@ -188,12 +188,21 @@ public class CommandContext implements CommandActor, CommandArgs {
 
     @Override
     public Player getArgAsPlayer(int index, boolean notifySender, String invalidArg, String placeholder) {
-        if (Bukkit.getServer().getPlayer(this.args.get(index)) == null) {
-            CompletableFuture<UUID> future = CompletableFuture.supplyAsync(() -> Bukkit.getServer().getOfflinePlayer(this.args.get(index))).thenApply(OfflinePlayer::getUniqueId);
+        Player player = Bukkit.getServer().getPlayer(this.args.get(index));
 
-            return Bukkit.getPlayer(future.join());
+        if (player == null) {
+            if (notifySender) reply(invalidArg.replaceAll(placeholder, this.args.get(index)));
+
+            return null;
         }
 
-        return Bukkit.getServer().getPlayer(this.args.get(index));
+        return player;
+    }
+
+    @Override
+    public OfflinePlayer getArgAsOfflinePlayer(int index, boolean notifySender, String invalidArg, String placeholder) {
+        CompletableFuture<UUID> future = CompletableFuture.supplyAsync(() -> Bukkit.getServer().getOfflinePlayer(this.args.get(index))).thenApply(OfflinePlayer::getUniqueId);
+
+        return Bukkit.getServer().getOfflinePlayer(future.join());
     }
 }
