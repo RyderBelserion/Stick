@@ -27,6 +27,14 @@ public abstract class StickCore {
         }
     }
 
+    public abstract String commandTooFewArgs();
+
+    public abstract String commandTooManyArgs();
+
+    public abstract String commandOptionalMsg();
+
+    public abstract String commandRequiredMsg();
+
     public abstract String commandRequirementNotPlayer();
 
     public abstract String commandRequirementNoPermission();

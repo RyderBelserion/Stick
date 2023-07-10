@@ -43,11 +43,6 @@ public abstract class CommandEngine implements TabCompleter, CommandExecutor {
     public String prefix;
     public String description;
 
-    public String optionalMsg;
-    public String requiredMsg;
-    public String tooFewArgs;
-    public String tooManyArgs;
-
     public CommandEngine() {
         this.aliases = new LinkedList<>();
 
@@ -136,10 +131,6 @@ public abstract class CommandEngine implements TabCompleter, CommandExecutor {
         this.commandData.put(engine.aliases.getFirst(), new CommandData(engine.description));
 
         engine.prefix = this.prefix;
-        engine.optionalMsg = this.optionalMsg;
-        engine.requiredMsg = this.requiredMsg;
-        engine.tooFewArgs = this.tooFewArgs;
-        engine.tooManyArgs = this.tooManyArgs;
         engine.ignoreInput = this.ignoreInput;
     }
 
@@ -155,13 +146,13 @@ public abstract class CommandEngine implements TabCompleter, CommandExecutor {
 
     private boolean inputValidation(CommandContext context) {
         if (context.getArgs().size() < this.requiredArgs.size()) {
-            context.reply(this.tooFewArgs);
+            context.reply(this.stickCore.commandTooFewArgs());
             sendValidFormat(context);
             return false;
         }
 
         if (context.getArgs().size() > this.requiredArgs.size() + this.optionalArgs.size()) {
-            context.reply(this.tooManyArgs);
+            context.reply(this.stickCore.commandTooManyArgs());
             sendValidFormat(context);
             return false;
         }
@@ -188,7 +179,7 @@ public abstract class CommandEngine implements TabCompleter, CommandExecutor {
             for (Argument arg : arguments) {
                 String value = this.optionalArgs.contains(arg) ? " (" + arg.name() + ") " : " <" + arg.name() + ">";
 
-                String msg = this.optionalArgs.contains(arg) ? this.optionalMsg : this.requiredMsg;
+                String msg = this.optionalArgs.contains(arg) ? this.stickCore.commandOptionalMsg() : this.stickCore.commandRequiredMsg();
 
                 Component argComponent = AdventureUtils.parse(value).hoverEvent(HoverEvent.showText(AdventureUtils.parse(msg))).asComponent();
 
