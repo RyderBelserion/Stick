@@ -45,6 +45,33 @@ public class CommandContext implements CommandActor, CommandArgs {
     }
 
     @Override
+    public void reply(boolean hasPrefix, String prefix, String message) {
+        if (message.isBlank() || message.isEmpty()) return;
+
+        if (hasPrefix) {
+            Component component = AdventureUtils.parse(prefix).append(AdventureUtils.parse(prefix));
+
+            this.sender.sendMessage(component);
+
+            return;
+        }
+
+        Component component = AdventureUtils.parse(message);
+
+        this.sender.sendMessage(component);
+    }
+
+    @Override
+    public void reply(boolean hasPrefix, String prefix, Component component) {
+        if (hasPrefix) {
+            this.sender.sendMessage(AdventureUtils.parse(prefix).append(component));
+            return;
+        }
+
+        this.sender.sendMessage(component);
+    }
+
+    @Override
     public void reply(Component component) {
         this.sender.sendMessage(component);
     }
@@ -61,6 +88,26 @@ public class CommandContext implements CommandActor, CommandArgs {
     @Override
     public void send(Audience audience, Component component) {
         audience.sendMessage(component);
+    }
+
+    @Override
+    public void send(Audience audience, String message, String prefix, boolean hasPrefix) {
+        if (hasPrefix) {
+            audience.sendMessage(AdventureUtils.parse(prefix).append(AdventureUtils.parse(message)));
+            return;
+        }
+
+        send(audience, message);
+    }
+
+    @Override
+    public void send(Audience audience, Component message, String prefix, boolean hasPrefix) {
+        if (hasPrefix) {
+            audience.sendMessage(AdventureUtils.parse(prefix).append(message));
+            return;
+        }
+
+        send(audience, message);
     }
 
     @Override
