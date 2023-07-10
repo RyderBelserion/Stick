@@ -4,6 +4,7 @@ import com.ryderbelserion.stick.paper.commands.sender.CommandActor;
 import com.ryderbelserion.stick.paper.commands.sender.CommandArgs;
 import com.ryderbelserion.stick.paper.utils.AdventureUtils;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -166,5 +167,18 @@ public class CommandContext implements CommandActor, CommandArgs {
         if (value != null) return value;
 
         return 1F;
+    }
+
+    @Override
+    public Player getArgAsPlayer(int index, boolean notifySender, String invalidArg, String... placeholder) {
+        Player player = Bukkit.getServer().getPlayer(this.args.get(index));
+
+        if (player == null) {
+            if (notifySender) reply(invalidArg.replaceAll(Arrays.toString(placeholder), this.args.get(index)));
+
+            return null;
+        }
+
+        return player;
     }
 }
