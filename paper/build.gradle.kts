@@ -16,8 +16,6 @@ tasks {
     shadowJar {
         fun reloc(pkg: String) = relocate(pkg, "${rootProject.group}.deps.$pkg")
 
-        archiveBaseName.set("${rootProject.name.lowercase()}-${project.name}")
-
         exclude("**/META-INF/**")
     }
 }

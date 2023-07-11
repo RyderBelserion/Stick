@@ -1,8 +1,6 @@
-package com.ryderbelserion.stick.paper;
+package com.ryderbelserion.stick.core;
 
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
-import com.ryderbelserion.stick.paper.utils.AdventureUtils;
+import com.ryderbelserion.stick.core.utils.AdventureUtils;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -50,27 +48,17 @@ public class StickLogger {
 
         @Override
         public void info(String message) {
-            Component msg = AdventureUtils.parse(Stick.getProjectPrefix() + message);
-
-            Bukkit.getConsoleSender().sendMessage(msg);
+            StickCore.api().getConsole().send(StickCore.api().getProjectPrefix(), AdventureUtils.parse(message));
         }
 
         @Override
         public void warning(String message) {
-            String prefix = Stick.getProjectPrefix();
-
-            Component msg = AdventureUtils.parse(prefix + "<yellow>" + message + "</yellow>");
-
-            Bukkit.getConsoleSender().sendMessage(msg);
+            StickCore.api().getConsole().send(AdventureUtils.parse(StickCore.api().getProjectPrefix() + "<yellow>" + message + "</yellow>"));
         }
 
         @Override
         public void severe(String message) {
-            String prefix = Stick.getProjectPrefix();
-
-            Component msg = AdventureUtils.parse(prefix + "<red>" + message + "</red>");
-
-            Bukkit.getConsoleSender().sendMessage(msg);
+            StickCore.api().getConsole().send(AdventureUtils.parse(StickCore.api().getProjectPrefix() + "<red>" + message + "</red>"));
         }
 
         @Override

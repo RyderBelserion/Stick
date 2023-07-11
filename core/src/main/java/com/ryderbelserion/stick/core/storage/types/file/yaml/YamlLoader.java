@@ -4,6 +4,7 @@ import com.ryderbelserion.stick.core.storage.FileExtension;
 import com.ryderbelserion.stick.core.storage.enums.StorageType;
 import com.ryderbelserion.stick.core.storage.types.file.FileLoader;
 import com.ryderbelserion.stick.core.storage.types.file.yaml.keys.Comment;
+import com.ryderbelserion.stick.core.storage.types.file.yaml.keys.Header;
 import com.ryderbelserion.stick.core.storage.types.file.yaml.keys.Path;
 import org.jetbrains.annotations.NotNull;
 import org.simpleyaml.configuration.comments.CommentType;
@@ -68,6 +69,10 @@ public class YamlLoader implements FileLoader {
 
             setComments(path.value(), comment.value());
         }
+
+        Header header = this.fileExtension.getClass().getDeclaredAnnotation(Header.class);
+
+        if (header != null) this.config.setHeader(header.value());
 
         save();
     }
